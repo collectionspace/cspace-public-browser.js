@@ -68,6 +68,7 @@ export default class ImageGallery extends Component {
     const {
       institutionId,
       media,
+      mediaAltText
     } = this.props;
 
     if (!media) {
@@ -92,6 +93,7 @@ export default class ImageGallery extends Component {
           items.push({
             original: blobUrl(gatewayUrl, mediaCsid, config.get('detailImageDerivative')),
             thumbnail: blobUrl(gatewayUrl, mediaCsid, 'Thumbnail'),
+            originalAlt:mediaAltText
           });
         });
       }

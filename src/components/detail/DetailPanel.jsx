@@ -109,11 +109,12 @@ export default class DetailPanel extends Component {
       data,
     } = this.props;
 
+    const mediaAltText=data['collectionspace_denorm:mediaAltText'];
     const referenceField = config.get('referenceField');
     const referenceValue = data[referenceField];
 
     return (
-      <ImageGallery referenceValue={referenceValue} />
+      <ImageGallery  mediaAltText={mediaAltText[0]} referenceValue={referenceValue} />
     );
   }
 
