@@ -48,16 +48,22 @@ export default class SearchResultList extends Component {
   renderPending() {
     const {
       isPending,
-      offset,
+      hits
     } = this.props;
-
-    if (!isPending || offset === 0) {
-      return undefined;
+    if(isPending){
+      return (
+        <SearchPending />
+      );
+    }else{
+      if (hits.size === 0) {
+        return (
+          <p>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            <FormattedMessage {...messages.noResult} />
+          </p>
+        );
+      }
     }
-
-    return (
-      <SearchPending />
-    );
   }
 
   renderHits() {
@@ -65,15 +71,6 @@ export default class SearchResultList extends Component {
       params,
       hits,
     } = this.props;
-
-    if (hits.size === 0) {
-      return (
-        <p>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <FormattedMessage {...messages.noResult} />
-        </p>
-      );
-    }
 
     const gatewayUrl = config.get('gatewayUrl');
 
