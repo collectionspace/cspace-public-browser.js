@@ -45,24 +45,24 @@ export default class SearchResultList extends Component {
     }
   }
 
+  /* eslint-disable consistent-return */
   renderPending() {
     const {
       isPending,
-      hits
+      hits,
     } = this.props;
-    if(isPending){
+    if (isPending) {
       return (
         <SearchPending />
       );
-    }else{
-      if (hits.size === 0) {
-        return (
-          <p>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <FormattedMessage {...messages.noResult} />
-          </p>
-        );
-      }
+    }
+    if (hits.size === 0) {
+      return (
+        <p>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <FormattedMessage {...messages.noResult} />
+        </p>
+      );
     }
   }
 
