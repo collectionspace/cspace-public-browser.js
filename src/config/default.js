@@ -83,7 +83,7 @@ export default {
     'ecm:primaryType',
     'collectionspace_denorm:mediaCsid',
     'collectionspace_denorm:title',
-    'collectionspace_denorm:mediaAltText'
+    'collectionspace_denorm:mediaAltText',
   ],
 
   referenceField: 'ecm:name',

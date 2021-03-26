@@ -12,6 +12,7 @@ const propTypes = {
   institutionId: PropTypes.string,
   media: PropTypes.instanceOf(Immutable.Map),
   referenceValue: PropTypes.string.isRequired,
+  mediaAltText: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
@@ -68,7 +69,7 @@ export default class ImageGallery extends Component {
     const {
       institutionId,
       media,
-      mediaAltText
+      mediaAltText,
     } = this.props;
 
     if (!media) {
@@ -93,7 +94,7 @@ export default class ImageGallery extends Component {
           items.push({
             original: blobUrl(gatewayUrl, mediaCsid, config.get('detailImageDerivative')),
             thumbnail: blobUrl(gatewayUrl, mediaCsid, 'Thumbnail'),
-            originalAlt:mediaAltText
+            originalAlt: mediaAltText,
           });
         });
       }

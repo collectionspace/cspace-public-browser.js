@@ -18,6 +18,7 @@ const propTypes = {
   data: PropTypes.shape({
     'collectionspace_core:refName': PropTypes.string,
     'collectionspace_denorm:title': PropTypes.string,
+    'collectionspace_denorm:mediaAltText': PropTypes.string,
   }),
   params: PropTypes.instanceOf(Immutable.Map).isRequired,
   readDetail: PropTypes.func,
@@ -109,12 +110,12 @@ export default class DetailPanel extends Component {
       data,
     } = this.props;
 
-    const mediaAltText=data['collectionspace_denorm:mediaAltText'];
+    const mediaAltText = data['collectionspace_denorm:mediaAltText'];
     const referenceField = config.get('referenceField');
     const referenceValue = data[referenceField];
 
     return (
-      <ImageGallery  mediaAltText={mediaAltText[0]} referenceValue={referenceValue} />
+      <ImageGallery mediaAltText={mediaAltText[0]} referenceValue={referenceValue} />
     );
   }
 
