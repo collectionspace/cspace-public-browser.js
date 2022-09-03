@@ -57,6 +57,7 @@
 
 .common li input:checked + div::before {
   background-image: url(../../images/check.svg);
+  border: 1px solid #8C8C8C;
 }
 
 .common li label > div > span > span {
