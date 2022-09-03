@@ -48,7 +48,7 @@ export default class Panel extends Component {
     return (
       <div className={className}>
         <header>
-          <button onClick={this.handleHeaderButtonClick} type="button">{title}</button>
+          <button onClick={this.handleHeaderButtonClick} aria-expanded={isExpanded} type="button">{title}</button>
         </header>
         {isExpanded ? children : undefined}
       </div>
