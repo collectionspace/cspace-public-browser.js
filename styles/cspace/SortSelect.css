@@ -17,3 +17,7 @@
 .common:focus {
   outline: 2px solid highlightColor;
 }
+
+.commonLabel {
+  margin-right: 20px; 
+}

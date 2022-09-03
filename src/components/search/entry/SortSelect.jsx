@@ -71,22 +71,31 @@ class SortSelect extends Component {
     } = this.props;
 
     return (
-      <select
-        className={styles.common}
-        value={value}
-        onChange={this.handleChange}
-      >
-        {
-          ['bestmatch', 'atoz', 'ztoa', 'newest', 'oldest'].map((sortOrder) => (
-            <option
-              key={sortOrder}
-              value={sortOrder}
-            >
-              {intl.formatMessage(messages[sortOrder])}
-            </option>
-          ))
-        }
-      </select>
+      <>
+        <label
+          className={styles.commonLabel}
+          aria-role="region"
+          aria-label="Sort order"
+        >
+          Sort order
+        </label>
+        <select
+          className={styles.common}
+          value={value}
+          onChange={this.handleChange}
+        >
+          {
+            ['bestmatch', 'atoz', 'ztoa', 'newest', 'oldest'].map((sortOrder) => (
+              <option
+                key={sortOrder}
+                value={sortOrder}
+              >
+                {intl.formatMessage(messages[sortOrder])}
+              </option>
+            ))
+          }
+        </select>
+      </>
     );
   }
 }
