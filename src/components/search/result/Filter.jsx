@@ -148,6 +148,7 @@ class Filter extends Component {
               name={value}
               type="checkbox"
               onChange={this.handleCheckboxChange}
+              onFocus={this.handleCheckBoxOnFocus}
             />
 
             <div>
@@ -162,6 +163,24 @@ class Filter extends Component {
         </li>
       );
     });
+  }
+
+  handleCheckBoxOnFocus(element) {
+    
+    const focusedFieldElement = document.getElementsByName(element.target.name);
+    const focusedFieldLiElement = focusedFieldElement[0].parentElement.parentElement;
+    const focusedFieldUlElement = focusedFieldLiElement.parentElement;
+    const scrollPosition = focusedFieldUlElement.scrollTop;
+    const ulSafeViewAreaTop = focusedFieldUlElement.getBoundingClientRect().top;
+    const ulSafeViewAreaBottom = (ulSafeViewAreaTop + focusedFieldUlElement.getBoundingClientRect().height) - focusedFieldLiElement.getBoundingClientRect().height;
+    
+    if (focusedFieldLiElement.getBoundingClientRect().top > ulSafeViewAreaBottom) {
+      focusedFieldUlElement.scrollTop = scrollPosition + focusedFieldLiElement.getBoundingClientRect().height;
+    }
+
+    if (focusedFieldLiElement.getBoundingClientRect().top < ulSafeViewAreaTop) {
+      focusedFieldUlElement.scrollTop = scrollPosition - focusedFieldLiElement.getBoundingClientRect().height;
+    }
   }
 
   render() {
