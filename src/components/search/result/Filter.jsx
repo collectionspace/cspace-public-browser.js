@@ -148,7 +148,7 @@ class Filter extends Component {
               name={value}
               type="checkbox"
               onChange={this.handleCheckboxChange}
-              onFocus={this.handleCheckBoxOnFocus}
+              onFocus={this.handleCheckboxFocus}
             />
 
             <div>
@@ -165,10 +165,9 @@ class Filter extends Component {
     });
   }
 
-  handleCheckBoxOnFocus(element) {
-    
-    const focusedFieldElement = document.getElementsByName(element.target.name);
-    const focusedFieldLiElement = focusedFieldElement[0].parentElement.parentElement;
+  handleCheckboxFocus(element) {
+    const focusedFieldElement = element.target;
+    const focusedFieldLiElement = focusedFieldElement.parentElement.parentElement;
     const focusedFieldUlElement = focusedFieldLiElement.parentElement;
     const scrollPosition = focusedFieldUlElement.scrollTop;
     const ulSafeViewAreaTop = focusedFieldUlElement.getBoundingClientRect().top;
