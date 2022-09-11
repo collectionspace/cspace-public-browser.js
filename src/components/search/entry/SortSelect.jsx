@@ -71,16 +71,14 @@ class SortSelect extends Component {
     } = this.props;
 
     return (
-      <>
-        <label
-          className={styles.commonLabel}
-          aria-role="region"
+      <label
           aria-label="Sort order"
+          for="sort-select"
         >
-          Sort order
-        </label>
+          Sort by {" "}
         <select
           className={styles.common}
+          id="sort-select"
           value={value}
           onChange={this.handleChange}
         >
@@ -95,7 +93,7 @@ class SortSelect extends Component {
             ))
           }
         </select>
-      </>
+      </label>
     );
   }
 }
