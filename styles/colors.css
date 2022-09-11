@@ -1,6 +1,6 @@
 @value buttonBgColor: #739dd3;
 @value highlightColor: rgb(51, 122, 183);
 @value inputBgColor: white;
-@value inputBorderColor: rgba(140, 140, 140, .3);
+@value inputBorderColor: #8C8C8C;
 @value noteColor: inherit;
 @value panelBorderColor: rgba(160, 160, 160, .3);
