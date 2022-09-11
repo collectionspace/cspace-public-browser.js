@@ -1,4 +1,5 @@
 @value buttonBgColor: #3D77C2;
+@value buttonBgHoverColor: rgba(51, 122, 183, .2);
 @value highlightColor: rgb(51, 122, 183);
 @value inputBgColor: white;
 @value inputBorderColor: rgba(140, 140, 140, .3);

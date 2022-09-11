@@ -1,4 +1,4 @@
-@value buttonBgColor, highlightColor from '../colors.css';
+@value buttonBgColor, buttonBgHoverColor, highlightColor from '../colors.css';
 
 body {
   padding: 0;
@@ -46,9 +46,12 @@ button {
 }
 
 button:hover {
-  background-color: highlightColor;
+  background-color: buttonBgHoverColor;
+  color: buttonBgColor;
+  outline: 2px solid buttonBgColor;
 }
 
 button:focus {
-  outline: 2px solid highlightColor;
+  outline-offset: 2px;
+  outline: 1px solid buttonBgColor;
 }
