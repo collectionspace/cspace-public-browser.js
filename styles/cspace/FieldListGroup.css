@@ -9,8 +9,7 @@
   align-items: baseline;
 }
 
-.common > div > h4,
-.common > div > em {
+.common > div > h4 {
   font: inherit;
   margin: 0 6px 0 0;
 }

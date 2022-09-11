@@ -46,7 +46,7 @@ const renderField = (id, fieldConfig, data) => {
     return (
       <React.Fragment key={id}>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <em {...classProp}>{title}</em>
+        <div {...classProp}>{title}</div>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <div {...classProp}>{formattedValue}</div>
       </React.Fragment>
