@@ -48,10 +48,9 @@ button {
 button:hover {
   background-color: buttonBgHoverColor;
   color: buttonBgColor;
-  outline: 2px solid buttonBgColor;
 }
 
 button:focus {
-  outline-offset: 2px;
-  outline: 1px solid buttonBgColor;
+  outline-offset: 1px;
+  outline: 2px solid buttonBgColor;
 }
