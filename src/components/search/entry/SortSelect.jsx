@@ -72,10 +72,10 @@ class SortSelect extends Component {
 
     return (
       <label
-          aria-label="Sort order"
-          for="sort-select"
-        >
-          Sort by {" "}
+        htmlFor="sort-select"
+      >
+        Sort by
+        {' '}
         <select
           className={styles.common}
           id="sort-select"
