@@ -27,7 +27,7 @@ export default function SearchResultStats(props) {
   } = props;
 
   return (
-    <div className={styles.common}>
+    <div className={styles.common} aria-live="polite">
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       {count ? <FormattedMessage {...messages.count} values={{ count }} /> : undefined}
     </div>
