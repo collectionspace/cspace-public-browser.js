@@ -9,6 +9,7 @@
   background-color: rgb(245, 245, 245);
   z-index: 1;
   transition: left 0.3s;
+  scroll-behavior: smooth;
 }
 
 .common > div > header {

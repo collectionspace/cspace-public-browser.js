@@ -1,5 +1,9 @@
 @value buttonBgColor, highlightColor from '../colors.css';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   padding: 0;
   margin: 0;
