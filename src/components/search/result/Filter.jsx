@@ -130,7 +130,7 @@ class Filter extends Component {
       selectedValues = Immutable.List.of(selectedValues);
     }
 
-    return matchingBuckets.map((bucket) => {
+    return matchingBuckets.map((bucket, index) => {
       const value = bucket.get('key');
       const type = typeof value;
       const count = bucket.get('doc_count');
@@ -145,6 +145,7 @@ class Filter extends Component {
             <input
               checked={isSelected}
               data-type={type !== 'string' ? type : undefined}
+              data-number={index}
               name={value}
               type="checkbox"
               onChange={this.handleCheckboxChange}
@@ -165,21 +166,15 @@ class Filter extends Component {
     });
   }
 
-  handleCheckboxFocus(element) {
-    const focusedFieldElement = element.target;
+  handleCheckboxFocus(event) {
+    const sidebar = document.getElementsByClassName('cspace-FilterPanel--common');
+    const focusedFieldElement = event.target;
+    const fieldIndex = focusedFieldElement.getAttribute('data-number');
     const focusedFieldLiElement = focusedFieldElement.parentElement.parentElement;
     const focusedFieldUlElement = focusedFieldLiElement.parentElement;
-    const scrollPosition = focusedFieldUlElement.scrollTop;
-    const ulSafeViewAreaTop = focusedFieldUlElement.getBoundingClientRect().top;
-    const ulSafeViewAreaBottom = (ulSafeViewAreaTop + focusedFieldUlElement.getBoundingClientRect().height) - focusedFieldLiElement.getBoundingClientRect().height;
-    
-    if (focusedFieldLiElement.getBoundingClientRect().top > ulSafeViewAreaBottom) {
-      focusedFieldUlElement.scrollTop = scrollPosition + focusedFieldLiElement.getBoundingClientRect().height;
-    }
 
-    if (focusedFieldLiElement.getBoundingClientRect().top < ulSafeViewAreaTop) {
-      focusedFieldUlElement.scrollTop = scrollPosition - focusedFieldLiElement.getBoundingClientRect().height;
-    }
+    focusedFieldUlElement.scrollTop = focusedFieldLiElement.getBoundingClientRect().height * fieldIndex;
+    focusedFieldUlElement.scrollIntoView({ block: "end", behavior: "smooth" });
   }
 
   render() {
