@@ -353,4 +353,5 @@ export const decade = (startYear) => {
   return `${startYear}–${endYear}`;
 };
 
+// eslint-disable-next-line react/no-danger
 export const html = (value) => <div dangerouslySetInnerHTML={{ __html: value }} />;

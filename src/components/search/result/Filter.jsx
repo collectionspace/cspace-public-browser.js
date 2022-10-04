@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage } from 'react-intl';
@@ -65,6 +66,7 @@ class Filter extends Component {
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSearchInputCommit = this.handleSearchInputCommit.bind(this);
+    this.handleCheckboxFocus = this.handleCheckboxFocus.bind(this);
   }
 
   handleSearchInputCommit(value) {
@@ -96,6 +98,20 @@ class Filter extends Component {
     const value = (type === 'number') ? Number.parseInt(name, 10) : name;
 
     onValueCommit(history, id, value, checkbox.checked);
+  }
+
+  handleCheckboxFocus(event) {
+    const {
+      target: focusedFieldElement,
+    } = event;
+
+    const fieldIndex = focusedFieldElement.getAttribute('data-number');
+    const focusedFieldLiElement = focusedFieldElement.parentElement.parentElement;
+    const focusedFieldUlElement = focusedFieldLiElement.parentElement;
+    const newScrollPosition = focusedFieldLiElement.getBoundingClientRect().height * fieldIndex;
+
+    focusedFieldUlElement.scrollTop = newScrollPosition;
+    focusedFieldUlElement.scrollIntoView({ block: 'end', behavior: 'smooth' });
   }
 
   renderBuckets() {
@@ -164,17 +180,6 @@ class Filter extends Component {
         </li>
       );
     });
-  }
-
-  handleCheckboxFocus(event) {
-    const sidebar = document.getElementsByClassName('cspace-FilterPanel--common');
-    const focusedFieldElement = event.target;
-    const fieldIndex = focusedFieldElement.getAttribute('data-number');
-    const focusedFieldLiElement = focusedFieldElement.parentElement.parentElement;
-    const focusedFieldUlElement = focusedFieldLiElement.parentElement;
-
-    focusedFieldUlElement.scrollTop = focusedFieldLiElement.getBoundingClientRect().height * fieldIndex;
-    focusedFieldUlElement.scrollIntoView({ block: "end", behavior: "smooth" });
   }
 
   render() {
