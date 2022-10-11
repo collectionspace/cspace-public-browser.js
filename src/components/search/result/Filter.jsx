@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, FormattedMessage } from 'react-intl';
@@ -60,13 +59,26 @@ const getFormattedValues = memoize((aggregation, formatValue) => {
   return formattedValues;
 });
 
+const handleCheckboxFocus = (event) => {
+  const {
+    target: focusedFieldElement,
+  } = event;
+
+  const fieldIndex = focusedFieldElement.getAttribute('data-number');
+  const focusedFieldLiElement = focusedFieldElement.parentElement.parentElement;
+  const focusedFieldUlElement = focusedFieldLiElement.parentElement;
+  const newScrollPosition = focusedFieldLiElement.getBoundingClientRect().height * fieldIndex;
+
+  focusedFieldUlElement.scrollTop = newScrollPosition;
+  focusedFieldUlElement.scrollIntoView({ block: 'end', behavior: 'instant' });
+};
+
 class Filter extends Component {
   constructor() {
     super();
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSearchInputCommit = this.handleSearchInputCommit.bind(this);
-    this.handleCheckboxFocus = this.handleCheckboxFocus.bind(this);
   }
 
   handleSearchInputCommit(value) {
@@ -98,20 +110,6 @@ class Filter extends Component {
     const value = (type === 'number') ? Number.parseInt(name, 10) : name;
 
     onValueCommit(history, id, value, checkbox.checked);
-  }
-
-  handleCheckboxFocus(event) {
-    const {
-      target: focusedFieldElement,
-    } = event;
-
-    const fieldIndex = focusedFieldElement.getAttribute('data-number');
-    const focusedFieldLiElement = focusedFieldElement.parentElement.parentElement;
-    const focusedFieldUlElement = focusedFieldLiElement.parentElement;
-    const newScrollPosition = focusedFieldLiElement.getBoundingClientRect().height * fieldIndex;
-
-    focusedFieldUlElement.scrollTop = newScrollPosition;
-    focusedFieldUlElement.scrollIntoView({ block: 'end', behavior: 'smooth' });
   }
 
   renderBuckets() {
@@ -165,7 +163,7 @@ class Filter extends Component {
               name={value}
               type="checkbox"
               onChange={this.handleCheckboxChange}
-              onFocus={this.handleCheckboxFocus}
+              onFocus={handleCheckboxFocus}
             />
 
             <div>
