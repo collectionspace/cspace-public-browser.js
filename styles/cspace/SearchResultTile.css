@@ -1,4 +1,4 @@
-@value highlightColor from '../colors.css';
+@value highlightColor, inputBorderColor from '../colors.css';
 @value searchResultTileMargin, searchResultTileWidth, searchResultTileBodyHeight from '../dimensions.css';
 
 .common {
@@ -11,6 +11,7 @@
   background-color: white;
   color: inherit;
   font-size: 0.9rem;
+  border: 1px solid inputBorderColor;
 }
 
 .common:hover {
@@ -20,6 +21,7 @@
 
 .common:focus {
   outline: none;
+  border:  1px solid highlightColor;
   box-shadow:  0 0 8px 1px highlightColor;
 }
 
