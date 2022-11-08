@@ -52,14 +52,18 @@ class FilterSearchInput extends Component {
     const placeholder = intl.formatMessage(messages.placeholder);
 
     return (
-      <input
-        aria-label={label}
-        className={styles.common}
-        placeholder={placeholder}
-        type="search"
-        value={value}
-        onChange={this.handleChange}
-      />
+      // eslint-disable-next-line jsx-a11y/label-has-associated-control
+      <label>
+        {label}
+
+        <input
+          className={styles.common}
+          placeholder={placeholder}
+          type="search"
+          value={value}
+          onChange={this.handleChange}
+        />
+      </label>
     );
   }
 }
