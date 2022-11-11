@@ -17,6 +17,7 @@
 
 .common:focus {
   outline: none;
+  border: 2px solid highlightColor;
   box-shadow: 0 0 9px 3px highlightColor;
 }
 
