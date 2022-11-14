@@ -19,10 +19,6 @@ const defaultProps = {
 const messages = defineMessages({
   label: {
     id: 'filterSearchInput.label',
-    defaultMessage: 'Search values',
-  },
-  placeholder: {
-    id: 'filterSearchInput.placeholder',
     defaultMessage: 'Search',
   },
 });
@@ -49,7 +45,6 @@ class FilterSearchInput extends Component {
     } = this.props;
 
     const label = intl.formatMessage(messages.label);
-    const placeholder = intl.formatMessage(messages.placeholder);
 
     return (
       // eslint-disable-next-line jsx-a11y/label-has-associated-control
@@ -58,7 +53,6 @@ class FilterSearchInput extends Component {
 
         <input
           className={styles.common}
-          placeholder={placeholder}
           type="search"
           value={value}
           onChange={this.handleChange}
