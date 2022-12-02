@@ -22,7 +22,7 @@
   width: 100%;
   border: none;
   padding: 18px 42px 18px 20px;
-  background-color: inherit;
+  background-color: inherit !important;
   text-align: left;
   color: #424242;
   background-position: calc(100% - 12px) center;
