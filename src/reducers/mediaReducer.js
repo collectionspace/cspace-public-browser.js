@@ -8,6 +8,7 @@ const setMedia = (state, action) => {
   const {
     csids,
     altTexts,
+    title,
   } = action.payload;
 
   const {
@@ -20,6 +21,7 @@ const setMedia = (state, action) => {
     Immutable.fromJS({
       csids,
       altTexts,
+      title,
     }),
   );
 };
