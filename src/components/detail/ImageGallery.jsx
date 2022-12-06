@@ -112,9 +112,12 @@ class ImageGallery extends Component {
           : config.get('gatewayUrl');
 
         mediaCsids.forEach((mediaCsid, index) => {
-          const altText = mediaAltTexts.get(index)
-            || title ? intl.formatMessage(messages.titledAltText, { title, num: index + 1 })
-            : intl.formatMessage(messages.defaultAltText, { num: index + 1 });
+          let altText = mediaAltTexts.get(index);
+          if (!altText) {
+            const num = index + 1;
+            altText = title ? intl.formatMessage(messages.titledAltText, { title, num })
+              : intl.formatMessage(messages.defaultAltText, { num });
+          }
 
           items.push({
             original: blobUrl(gatewayUrl, mediaCsid, config.get('detailImageDerivative')),
