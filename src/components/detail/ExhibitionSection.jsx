@@ -4,7 +4,7 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import styles from '../../../styles/cspace/ExhibitionSection.css';
 
 const propTypes = {
-  exhibition: PropTypes.objectOf({
+  exhibition: PropTypes.shape({
     title: PropTypes.string,
     generalNote: PropTypes.string,
     curatorialNote: PropTypes.string,
