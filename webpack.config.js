@@ -59,11 +59,7 @@ const config = {
       },
       {
         test: /\.(png|jpg|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-          },
-        ],
+        type: 'asset/inline',
       },
     ],
   },
@@ -77,10 +73,11 @@ const config = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    contentBase: __dirname,
     historyApiFallback: true,
-    inline: true,
     port: 8081,
+    static: {
+      directory: path.resolve(__dirname),
+    },
   },
 };
 
