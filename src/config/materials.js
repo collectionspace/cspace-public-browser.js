@@ -123,6 +123,19 @@ export default {
 
   filters: {
     fields: {
+      material: {
+        field: 'collectionobjects_common:materialGroupList.material',
+        messages: defineMessages({
+          label: {
+            id: 'filter.material.label',
+            defaultMessage: 'Material',
+          },
+          shortLabel: {
+            id: 'filter.material.shortLabel',
+            defaultMessage: 'Material',
+          },
+        }),
+      },
       materialTermAttributionContributingOrganization: {
         field: 'collectionspace_denorm:holdingInstitutions.displayName',
         messages: defineMessages({
@@ -565,6 +578,19 @@ export default {
 
   detailFields: {
     fields: {
+      material: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.material.label',
+            defaultMessage: 'Material',
+          },
+        }),
+        field: 'collectionobject_common:materialGroupList',
+        format: listOf(valueAt({
+          path: 'material',
+          format: filterLink({}),
+        })),
+      },
       featuredCollectionGroupList: {
         field: 'materials_common:featuredCollectionGroupList',
         format: listOf((valueAt({
