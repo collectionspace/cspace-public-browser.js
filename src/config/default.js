@@ -197,7 +197,7 @@ export default {
         }),
       },
       material: {
-        field: 'collectionobjects_common:materialGroupList.material',
+        field: 'collectionspace_denorm:materialGroupList.material',
         messages: defineMessages({
           label: {
             id: 'filter.material.label',
@@ -493,7 +493,7 @@ export default {
             defaultMessage: 'Material',
           },
         }),
-        field: 'collectionobjects_common:materialGroupList',
+        field: 'collectionspace_denorm:materialGroupList',
         format: listOf(valueAt({
           path: 'material',
           format: filterLink({}),
