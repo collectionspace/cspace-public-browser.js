@@ -16,6 +16,9 @@ export default {
       objectProductionPeople: {
         field: 'collectionobjects_common:objectProductionPeopleGroupList.objectProductionPeople.displayName',
       },
+      objectProductionPlace: {
+        field: 'collectionobjects_common:objectProductionPlaceGroupList.objectProductionPlace.displayName',
+      },
       taxon: {
         field: 'collectionobjects_naturalhistory_extension:taxonomicIdentGroupList.taxon.displayName',
         messages: defineMessages({
