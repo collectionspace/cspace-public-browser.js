@@ -569,7 +569,7 @@ export default {
   detailFields: {
     fields: {
       material: {
-        field: 'collectionobject_common:materialGroupList',
+        field: 'collectionobjects_common:materialGroupList',
       },
       featuredCollectionGroupList: {
         field: 'materials_common:featuredCollectionGroupList',
