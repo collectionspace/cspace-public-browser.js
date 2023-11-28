@@ -116,7 +116,7 @@ export default {
   filters: {
     fields: {
       objectName: {
-        field: 'collectionobjects_common:objectNameList.objectName',
+        field: 'collectionspace_denorm:objectNameList.objectName',
         messages: defineMessages({
           label: {
             id: 'filter.objectName.label',
