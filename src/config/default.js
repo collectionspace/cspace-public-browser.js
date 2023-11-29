@@ -377,7 +377,7 @@ export default {
 
   detailSubtitle: (data) => {
     const {
-      'collectionobjects_common:objectNameList': objectNameGroups,
+      'collectionspace_denorm:objectNameList': objectNameGroups,
     } = data;
 
     if (objectNameGroups && objectNameGroups.length > 0) {
@@ -413,6 +413,19 @@ export default {
           },
         }),
         field: 'collectionobjects_common:objectNumber',
+      },
+      objectName: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.objectName.label',
+            defaultMessage: 'Name',
+          },
+        }),
+        field: 'collectionspace_denorm:objectNameList',
+        format: listOf(valueAt({
+          path: 'objectName',
+          format: filterLink({}),
+        })),
       },
       responsibleDepartment: {
         messages: defineMessages({
@@ -559,6 +572,7 @@ export default {
         }),
         fields: [
           'objectNumber',
+          'objectName',
           'responsibleDepartment',
         ],
       },
