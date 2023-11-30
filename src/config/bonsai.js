@@ -11,6 +11,13 @@ export default {
     'filter.objectProductionPerson.shortLabel': 'Original artist',
     'detailField.objectProductionPerson.label': 'Original artist',
   },
+  filters: {
+    fields: {
+      objectProductionPlace: {
+        field: 'collectionobjects_common:objectProductionPlaceGroupList.objectProductionPlace.displayName',
+      },
+    },
+  },
   detailFields: {
     fields: {
       originDate: {
