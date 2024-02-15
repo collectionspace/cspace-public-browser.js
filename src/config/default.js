@@ -564,6 +564,43 @@ export default {
         field: 'collectionspace_denorm:creditLine',
         format: list,
       },
+      rightStatement: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.rightStatement.label',
+            defaultMessage: 'Right Statement',
+          },
+        }),
+        field: 'collectionobjects_common:rightsGroupList',
+        format: listOf(valueAt({
+          path: 'rightStatement',
+        })),
+      },
+      standardizedRightStatement: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.standardizedRightStatement.label',
+            defaultMessage: 'Standardized Right Statement',
+          },
+        }),
+        field: 'collectionobjects_common:rightsGroupList',
+        format: listOf(valueAt({
+          path: 'standardizedRightStatement',
+          format: displayName,
+        })),
+      },
+      rightReproductionStatement: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.rightReproductionStatement.label',
+            defaultMessage: 'Right Reproduction Statement',
+          },
+        }),
+        field: 'collectionobjects_common:rightsInGroupList',
+        format: listOf(valueAt({
+          path: 'rightReproductionStatement',
+        })),
+      },
     },
     groups: {
       group_id: {
@@ -609,12 +646,26 @@ export default {
           'objectProductionDate',
         ],
       },
+      group_rights: {
+        messages: defineMessages({
+          label: {
+            id: 'detailGroup.group_rights.label',
+            defaultMessage: 'Rights',
+          },
+        }),
+        fields: [
+          'rightStatement',
+          'standardizedRightStatement',
+          'rightReproductionStatement',
+        ],
+      },
     },
     layout: {
       fields1: [
         'group_id',
         'group_description',
         'group_production',
+        'group_rights',
       ],
     },
   },
