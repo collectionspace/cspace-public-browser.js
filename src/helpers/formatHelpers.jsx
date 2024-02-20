@@ -85,6 +85,37 @@ const renderList = (values, inline = false) => {
   return values;
 };
 
+const renderAggregate = (values, inline = false) => {
+  const flattened = values.flatMap((value, index) => {
+    const {
+      data,
+      field,
+      format,
+    } = value;
+    if (!data) {
+      return [];
+    }
+
+    if (Array.isArray(data)) {
+      return data.map((childValue, childIndex) => {
+        const key = `${field}-${childIndex}`;
+        const formattedValue = format ? format(childValue, field) : childValue;
+        return <li key={key}>{formattedValue}</li>;
+      });
+    }
+
+    const key = `${field}-${index}`;
+    const formattedValue = format ? format(data, field) : data;
+    return <li key={key}>{formattedValue}</li>;
+  });
+
+  return (
+    <FieldValueList inline={inline}>
+      {flattened}
+    </FieldValueList>
+  );
+};
+
 export const unformatted = (data) => data;
 
 export const boolean = (value) => {
@@ -97,6 +128,8 @@ export const boolean = (value) => {
       return value;
   }
 };
+
+export const aggregate = (value) => renderAggregate(value);
 
 export const literal = (value) => () => value;
 

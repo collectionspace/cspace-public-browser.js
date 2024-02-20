@@ -18,10 +18,21 @@ const propTypes = {
   }).isRequired,
 };
 
+const aggregateData = ({ field, format }, data) => {
+  const fieldData = data[field];
+
+  return {
+    data: fieldData,
+    field,
+    format,
+  };
+};
+
 const renderField = (id, fieldConfig, data) => {
   const {
     className,
     field,
+    fields,
     format,
     label,
     messages,
@@ -32,7 +43,9 @@ const renderField = (id, fieldConfig, data) => {
     ? <FormattedMessage {...messages.label} />
     : label;
 
-  const value = data[field];
+  const value = fields
+    ? fields.map((config) => aggregateData(config, data, id))
+    : data[field];
   const formattedValue = (format && value) ? format(value, id) : value;
 
   if (!formattedValue) {

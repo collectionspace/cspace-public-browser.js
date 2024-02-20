@@ -10,6 +10,7 @@ import {
   listOf,
   nameRole,
   valueAt,
+  aggregate,
 } from '../helpers/formatHelpers';
 
 const departmentMessages = defineMessages({
@@ -528,6 +529,30 @@ export default {
           roleFieldName: 'techniqueType',
         })),
       },
+      subject: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.subject.label',
+            defaultMessage: 'Subject',
+          },
+        }),
+        fields: [{
+          field: 'collectionobjects_common:contentConcepts',
+          format: filterLink({ filterValueFormat: displayName }),
+        }, {
+          field: 'collectionobjects_common:contentEvents',
+          format: filterLink({ filterValueFormat: displayName }),
+        }, {
+          field: 'collectionobjects_common:contentPersons',
+          format: filterLink({ filterValueFormat: displayName }),
+        }, {
+          field: 'collectionobjects_common:contentOrganizations',
+          format: filterLink({ filterValueFormat: displayName }),
+        }, {
+          field: 'collectionobjects_common:contentDescription',
+        }],
+        format: aggregate,
+      },
       contentConcept: {
         messages: defineMessages({
           label: {
@@ -626,7 +651,7 @@ export default {
         fields: [
           'material',
           'technique',
-          'contentConcept',
+          'subject',
           'measuredPart',
           'creditLine',
         ],
