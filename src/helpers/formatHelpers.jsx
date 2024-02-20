@@ -85,6 +85,14 @@ const renderList = (values, inline = false) => {
   return values;
 };
 
+/**
+ * Create a FieldValueList from multiple fields. This assumes that the values passed in is an
+ * Array of fields to be aggregated and the detail data which was queried.
+ *
+ * @param {Object} values the json object containing the field config and detail data
+ * @param {boolean} inline if the list should be rendered inline
+ * @returns the FieldValueList
+ */
 const renderAggregate = (values, inline = false) => {
   const {
     fields,
