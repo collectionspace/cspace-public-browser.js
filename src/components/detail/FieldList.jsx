@@ -18,16 +18,6 @@ const propTypes = {
   }).isRequired,
 };
 
-const aggregateData = ({ field, format }, data) => {
-  const fieldData = data[field];
-
-  return {
-    data: fieldData,
-    field,
-    format,
-  };
-};
-
 const renderField = (id, fieldConfig, data) => {
   const {
     className,
@@ -44,7 +34,7 @@ const renderField = (id, fieldConfig, data) => {
     : label;
 
   const value = fields
-    ? fields.map((config) => aggregateData(config, data, id))
+    ? { fields, data }
     : data[field];
   const formattedValue = (format && value) ? format(value, id) : value;
 
