@@ -28,7 +28,7 @@ export default {
           'materialTechniqueDescription',
           'material',
           'technique',
-          'contentConcept',
+          'subject',
           'measuredPart',
           'creditLine',
         ],
