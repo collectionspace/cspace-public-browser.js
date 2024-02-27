@@ -65,7 +65,7 @@ export default {
         fields: [
           'material',
           'technique',
-          'contentConcept',
+          'subject',
           'color',
           'taxon',
         ],
@@ -137,7 +137,7 @@ export default {
         fields: [
           'material',
           'technique',
-          'contentConcept',
+          'subject',
           'measuredPart',
           'creditLine',
           'taxon',

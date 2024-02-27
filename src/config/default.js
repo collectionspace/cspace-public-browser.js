@@ -252,15 +252,15 @@ export default {
           },
         }),
       },
-      contentConcept: {
-        field: 'collectionobjects_common:contentConcepts.displayName',
+      subject: {
+        field: 'collectionspace_denorm:contentSubjectList.subject',
         messages: defineMessages({
           label: {
-            id: 'filter.contentConcept.label',
+            id: 'filter.subject.label',
             defaultMessage: 'Subject',
           },
           shortLabel: {
-            id: 'filter.contentConcept.shortLabel',
+            id: 'filter.subject.shortLabel',
             defaultMessage: 'Subject',
           },
         }),
@@ -331,7 +331,7 @@ export default {
         }),
         fields: [
           'material',
-          'contentConcept',
+          'subject',
           'color',
         ],
       },
@@ -528,16 +528,17 @@ export default {
           roleFieldName: 'techniqueType',
         })),
       },
-      contentConcept: {
+      subject: {
         messages: defineMessages({
           label: {
-            id: 'detailField.contentConcept.label',
+            id: 'detailField.subject.label',
             defaultMessage: 'Subject',
           },
         }),
-        field: 'collectionobjects_common:contentConcepts',
-        format: listOf(filterLink({
-          filterValueFormat: displayName,
+        field: 'collectionspace_denorm:contentSubjectList',
+        format: listOf(valueAt({
+          path: 'subject',
+          format: filterLink({}),
         })),
       },
       measuredPart: {
@@ -626,7 +627,7 @@ export default {
         fields: [
           'material',
           'technique',
-          'contentConcept',
+          'subject',
           'measuredPart',
           'creditLine',
         ],
