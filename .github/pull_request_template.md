@@ -10,6 +10,6 @@
 **Dependencies for merging? Releasing to production?**
 [Description of any watchouts, dependencies, or issues we should be aware of.]
 
-**Has the application documentation been updated for these changes?**
+**Has the [public browser documentation](https://collectionspace.atlassian.net/wiki/spaces/COL/pages/666274513/Public+Collections+Browser) been updated for these changes?**
 
 **Did someone actually run this code to verify it works?**
