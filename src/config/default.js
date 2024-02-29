@@ -541,6 +541,15 @@ export default {
           format: filterLink({}),
         })),
       },
+      contentDescription: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.contentDescription.label',
+            defaultMessage: 'Content Description',
+          },
+        }),
+        field: 'collectionobjects_common:contentDescription',
+      },
       measuredPart: {
         messages: defineMessages({
           label: {
@@ -628,6 +637,7 @@ export default {
           'material',
           'technique',
           'subject',
+          'contentDescription',
           'measuredPart',
           'creditLine',
         ],

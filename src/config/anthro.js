@@ -138,6 +138,7 @@ export default {
           'material',
           'technique',
           'subject',
+          'contentDescription',
           'measuredPart',
           'creditLine',
           'taxon',
