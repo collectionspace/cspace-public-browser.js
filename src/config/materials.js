@@ -1073,7 +1073,7 @@ export default {
         objectCount: {
           label: 'Holdings',
           field: 'collectionobjects_common:objectCountGroupList',
-          format: listOf(
+          format: inlineListOf(
             valueAt({ path: 'objectCount' }),
           ),
         },
