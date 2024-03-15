@@ -1,3 +1,7 @@
+## v2.1.1
+
+- Fix object production place appearing as a URN in LHMC configuration.
+
 ## v2.1.0
 
 - Filter order and size are now configurable.
