@@ -1070,9 +1070,12 @@ export default {
             linkValue: false,
           })),
         },
-        numberOfObjects: {
+        objectCount: {
           label: 'Holdings',
-          field: 'collectionobjects_common:numberOfObjects',
+          field: 'collectionobjects_common:objectCountGroupList',
+          format: listOf(
+            valueAt({ path: 'objectCount' }),
+          ),
         },
         objectStatusList: {
           label: 'Type',
@@ -1138,7 +1141,7 @@ export default {
         },
         group_sample_holdings: {
           fields: [
-            'numberOfObjects',
+            'objectCount',
             'objectStatusList',
           ],
           className: 'inline',
