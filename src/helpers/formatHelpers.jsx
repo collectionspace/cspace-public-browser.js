@@ -299,6 +299,10 @@ export const paragraphs = (array) => (
   array && array.length > 0 && array.map((value, index) => <p key={index}>{value}</p>)
 );
 
+export const head = (format) => (array, fieldName) => (
+  Array.isArray(array) && array.length > 0 ? format(array[0], fieldName) : null
+);
+
 export const valueAt = (config) => (data) => {
   const {
     path,
