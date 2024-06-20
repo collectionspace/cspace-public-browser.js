@@ -1,3 +1,5 @@
+/* global window */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -43,6 +45,13 @@ const getInstitutionIds = () => {
   const institutionsConfig = config.get('institutions');
 
   return (institutionsConfig ? Object.keys(institutionsConfig) : []);
+};
+
+const handleImageClick = (event) => {
+  const imageUrl = event.target.src;
+  if (typeof window !== 'undefined') {
+    window.open(imageUrl, '_blank');
+  }
 };
 
 class ImageGallery extends Component {
@@ -135,6 +144,7 @@ class ImageGallery extends Component {
           <Gallery
             disableArrowKeys
             items={items}
+            onClick={handleImageClick}
             showFullscreenButton={false}
             showPlayButton={false}
             showThumbnails={items.length > 1}
