@@ -611,6 +611,19 @@ export default {
           path: 'rightReproductionStatement',
         })),
       },
+      relatedLinks: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.relatedLinks.label',
+            defaultMessage: 'Related Links',
+          },
+        }),
+        field: 'collectionobjects_common:publishedRelatedLinkGroupList',
+        format: listOf(nameRole({
+          nameFieldName: 'relatedLink',
+          roleFieldName: 'descriptiveTitle',
+        })),
+      },
     },
     groups: {
       group_id: {
@@ -670,6 +683,17 @@ export default {
           'rightReproductionStatement',
         ],
       },
+      group_reference: {
+        messages: defineMessages({
+          label: {
+            id: 'detailGroup.group_reference.label',
+            defaultMessage: 'Reference',
+          },
+        }),
+        fields: [
+          'relatedLinks',
+        ],
+      },
     },
     layout: {
       fields1: [
@@ -677,6 +701,7 @@ export default {
         'group_description',
         'group_production',
         'group_rights',
+        'group_reference',
       ],
     },
   },
