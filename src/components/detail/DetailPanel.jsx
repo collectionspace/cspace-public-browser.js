@@ -69,14 +69,20 @@ export default class DetailPanel extends Component {
     const descFormatter = config.get('detailDescription');
     const descriptionData = descFormatter && descFormatter(data);
 
-    // eslint-disable-next-line react/no-array-index-key
-    const descriptions = descriptionData.map((desc, idx) => <p key={idx}>{desc}</p>);
+    if (descriptionData) {
+      const descriptions = Array.isArray(descriptionData)
+        // eslint-disable-next-line react/no-array-index-key
+        ? descriptionData.map((desc, idx) => <p key={idx}>{desc}</p>)
+        : descriptionData;
 
-    return (
-      <div className={styles.description}>
-        {descriptions}
-      </div>
-    );
+      return (
+        <div className={styles.description}>
+          {descriptions}
+        </div>
+      );
+    }
+
+    return undefined;
   }
 
   renderFieldList() {
