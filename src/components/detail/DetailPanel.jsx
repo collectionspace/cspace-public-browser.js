@@ -73,7 +73,7 @@ export default class DetailPanel extends Component {
       const descriptions = Array.isArray(descriptionData)
         // eslint-disable-next-line react/no-array-index-key
         ? descriptionData.map((desc, idx) => <p key={idx}>{desc}</p>)
-        : descriptionData;
+        : <p>{descriptionData}</p>;
 
       return (
         <div className={styles.description}>
