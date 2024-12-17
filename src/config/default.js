@@ -400,10 +400,10 @@ export default {
     } = data;
 
     if (briefDescriptions && briefDescriptions.length > 0) {
-      return briefDescriptions[0];
+      return briefDescriptions;
     }
 
-    return undefined;
+    return [];
   },
 
   detailFields: {
