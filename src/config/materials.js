@@ -454,6 +454,24 @@ export default {
           },
         }),
       },
+      featuredApplication: {
+        field: 'materials_common:featuredApplicationGroupList.featuredApplication.displayName',
+        messages: defineMessages({
+          label: {
+            id: 'filter.featuredApplication.label',
+            defaultMessage: 'Featured application',
+          },
+        }),
+      },
+      featuredCollection: {
+        field: 'materials_common:featuredCollectionGroupList.featuredCollection.displayName',
+        messages: defineMessages({
+          label: {
+            id: 'filter.featuredCollection.label',
+            defaultMessage: 'Featured collection',
+          },
+        }),
+      },
     },
     groups: {
       group_institution: {
@@ -576,7 +594,9 @@ export default {
         field: 'materials_common:featuredCollectionGroupList',
         format: listOf((valueAt({
           path: 'featuredCollection',
-          format: displayName,
+          format: filterLink({
+            filterValueFormat: displayName,
+          }),
         }))),
       },
       materialCompositionGroupList: {
