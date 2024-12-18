@@ -6,6 +6,7 @@ import {
   decade,
   displayName,
   filterLink,
+  linkText,
   list,
   listOf,
   nameRole,
@@ -619,9 +620,10 @@ export default {
           },
         }),
         field: 'collectionobjects_common:publishedRelatedLinkGroupList',
-        format: listOf(nameRole({
-          nameFieldName: 'relatedLink',
-          roleFieldName: 'descriptiveTitle',
+        format: listOf(linkText({
+          urlFieldName: 'relatedLink',
+          textFieldName: 'descriptiveTitle',
+          type: 'external',
         })),
       },
     },
