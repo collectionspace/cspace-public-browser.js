@@ -1,3 +1,11 @@
+## v3.3.0
+
+- Display all brief descriptions when available
+- Add display for published related links
+- Add link on featuredCollection
+
+## v3.2.0
+
 ## v3.1.0
 
 - Clicking an image on the detail page opens it in a new tab.
