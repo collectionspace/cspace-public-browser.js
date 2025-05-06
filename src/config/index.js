@@ -1,5 +1,5 @@
 import loget from 'lodash/get';
-import lomerge from 'lodash/merge';
+import lomerge from 'lodash/mergeWith';
 import defaultConfig from './default';
 import anthroConfig from './anthro';
 import bonsaiConfig from './bonsai';
@@ -23,6 +23,15 @@ const namedConfig = {
 
 const config = lomerge({}, defaultConfig);
 
+const configMerge = (objValue, srcValue) => {
+  // overwrite arrays instead of merging them
+  if (Array.isArray(objValue)) {
+    return srcValue;
+  }
+
+  return undefined;
+};
+
 export default {
   get: (path, defaultValue) => loget(config, path, defaultValue),
 
@@ -39,11 +48,11 @@ export default {
         const baseConfig = namedConfig[baseConfigName];
 
         if (baseConfig) {
-          lomerge(config, baseConfig);
+          lomerge(config, baseConfig, configMerge);
         }
       }
 
-      lomerge(config, source);
+      lomerge(config, source, configMerge);
     });
   },
 
