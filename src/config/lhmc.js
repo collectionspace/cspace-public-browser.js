@@ -15,6 +15,7 @@ export default {
         'group_id',
         'group_description',
         'group_rights',
+        'group_reference',
       ],
     },
   },
