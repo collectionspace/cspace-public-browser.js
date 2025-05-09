@@ -6,6 +6,7 @@ import {
   decade,
   displayName,
   filterLink,
+  inlineList,
   linkText,
   list,
   listOf,
@@ -515,6 +516,16 @@ export default {
           path: 'material',
           format: filterLink({}),
         })),
+      },
+      color: {
+        messages: defineMessages({
+          label: {
+            id: 'filter.color.label',
+            defaultMessage: 'Color',
+          },
+        }),
+        field: 'collectionobjects_common:colors',
+        format: inlineList,
       },
       technique: {
         messages: defineMessages({
