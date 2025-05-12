@@ -138,6 +138,7 @@ export default {
           'material',
           'technique',
           'subject',
+          'color',
           'contentDescription',
           'measuredPart',
           'creditLine',
