@@ -152,6 +152,7 @@ export default {
         'group_collection',
         'group_description',
         'group_production',
+        'group_reference',
       ],
     },
   },
