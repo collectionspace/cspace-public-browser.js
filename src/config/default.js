@@ -402,7 +402,7 @@ export default {
     } = data;
 
     if (briefDescriptions && briefDescriptions.length > 0) {
-      return briefDescriptions;
+      return briefDescriptions.flatMap((desc) => desc.split('\n'));
     }
 
     return [];
