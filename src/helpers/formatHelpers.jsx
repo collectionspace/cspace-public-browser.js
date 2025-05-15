@@ -303,7 +303,7 @@ export const numericRange = (config) => (data) => {
  */
 export const paragraphs = (array) => (
   // eslint-disable-next-line react/no-array-index-key
-  array && Array.isArray(array) && array.length > 1 && array.map((value, index) => <p key={index}>{value}</p>)
+  Array.isArray(array) && array.flatMap((value) => value.split('\n')).map((value, index) => <p key={index}>{value}</p>)
 );
 
 /**
