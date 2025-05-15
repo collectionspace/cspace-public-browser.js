@@ -302,10 +302,28 @@ export const numericRange = (config) => (data) => {
  * @returns
  */
 export const paragraphs = (array) => (
-  array && array.length > 0
   // eslint-disable-next-line react/no-array-index-key
-  && array.flapMap((value) => value.split('\n')).map((value, index) => <p key={index}>{value}</p>)
+  array && Array.isArray(array) && array.length > 1 && array.map((value, index) => <p key={index}>{value}</p>)
 );
+
+/**
+ * Split a string based on a given character to split with. Defaults to newline.
+ *
+ * @param {*} config
+ * @returns
+ */
+export const split = (config) => (string) => {
+  const {
+    splitter = '\n',
+    format = unformatted,
+  } = config;
+
+  if (!(typeof string === 'string' || string instanceof String)) {
+    return null;
+  }
+
+  return format(string.split(splitter));
+};
 
 export const head = (format) => (array, fieldName) => (
   Array.isArray(array) && array.length > 0 ? format(array[0], fieldName) : null
