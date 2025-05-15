@@ -11,6 +11,8 @@ import {
   list,
   listOf,
   nameRole,
+  paragraphs,
+  split,
   valueAt,
 } from '../helpers/formatHelpers';
 
@@ -561,6 +563,9 @@ export default {
           },
         }),
         field: 'collectionobjects_common:contentDescription',
+        format: split({
+          format: paragraphs,
+        }),
       },
       measuredPart: {
         messages: defineMessages({
