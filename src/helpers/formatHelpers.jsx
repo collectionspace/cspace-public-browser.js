@@ -294,10 +294,36 @@ export const numericRange = (config) => (data) => {
   ], qualifierSeparator);
 };
 
+/**
+ * Create a paragraph element for each String in an array. If the String contains a newline, it will
+ * be split in order to retain line breaks in that display.
+ *
+ * @param {} array
+ * @returns
+ */
 export const paragraphs = (array) => (
   // eslint-disable-next-line react/no-array-index-key
-  array && array.length > 0 && array.map((value, index) => <p key={index}>{value}</p>)
+  Array.isArray(array) && array.flatMap((value) => value.split('\n')).map((value, index) => <p key={index}>{value}</p>)
 );
+
+/**
+ * Split a string based on a given character to split with. Defaults to newline.
+ *
+ * @param {*} config
+ * @returns
+ */
+export const split = (config) => (string) => {
+  const {
+    splitter = '\n',
+    format = unformatted,
+  } = config;
+
+  if (!(typeof string === 'string' || string instanceof String)) {
+    return null;
+  }
+
+  return format(string.split(splitter));
+};
 
 export const head = (format) => (array, fieldName) => (
   Array.isArray(array) && array.length > 0 ? format(array[0], fieldName) : null

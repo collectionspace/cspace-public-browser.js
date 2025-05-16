@@ -119,7 +119,7 @@ export default {
       'materials_common:description': description,
     } = data;
 
-    return description;
+    return description && description.split('\n');
   },
 
   filters: {
