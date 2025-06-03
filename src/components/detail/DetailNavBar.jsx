@@ -10,7 +10,7 @@ import styles from '../../../styles/cspace/DetailNavBar.css';
 import linkStyles from '../../../styles/cspace/Link.css';
 
 const propTypes = {
-  params: PropTypes.instanceOf(Immutable.Map).isRequired,
+  params: PropTypes.instanceOf(Immutable.Map),
   prev: PropTypes.shape({
     'ecm:name': PropTypes.string,
   }),
@@ -20,6 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  params: Immutable.Map(),
   prev: undefined,
   next: undefined,
 };
@@ -39,71 +40,42 @@ const messages = defineMessages({
   },
 });
 
-export default function DetailNavBar(props) {
-  const {
-    params,
-    prev,
-    next,
-  } = props;
+export default function DetailNavBar({ params, prev, next }) {
+  function renderLink(searchParams, index, adjacent, className, message) {
+    const detailPath = config.get('detailPath');
+    const csid = get(adjacent, 'ecm:name');
 
-  const index = params.get('index');
-  const searchParams = params.get('searchParams');
-
-  if (!searchParams || typeof index === 'undefined') {
-    return null;
+    return (
+      <span>
+        <Link
+          className={className}
+          to={{
+            pathname: `/${detailPath}/${csid}`,
+            state: {
+              index,
+              searchParams,
+            },
+          }}
+        >
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          <FormattedMessage {...message} />
+        </Link>
+      </span>
+    );
   }
-
-  const searchParamsObj = searchParams.toJS();
-  const detailPath = config.get('detailPath');
 
   let prevLink;
   let nextLink;
+  let queryString = '';
 
-  if (prev) {
-    const csid = get(prev, 'ecm:name');
-
-    prevLink = (
-      <span>
-        <Link
-          className={linkStyles.prev}
-          to={{
-            pathname: `/${detailPath}/${csid}`,
-            state: {
-              index: index - 1,
-              searchParams: searchParamsObj,
-            },
-          }}
-        >
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <FormattedMessage {...messages.prev} />
-        </Link>
-      </span>
-    );
+  const index = params.get('index');
+  const searchParams = params.get('searchParams');
+  if (searchParams && index !== undefined) {
+    const searchParamsObj = searchParams.toJS();
+    prevLink = prev && renderLink(searchParamsObj, index - 1, prev, linkStyles.prev, messages.prev);
+    nextLink = next && renderLink(searchParamsObj, index + 1, next, linkStyles.next, messages.next);
+    queryString = searchParamsToQueryString(searchParams);
   }
-
-  if (next) {
-    const csid = get(next, 'ecm:name');
-
-    nextLink = (
-      <span>
-        <Link
-          className={linkStyles.next}
-          to={{
-            pathname: `/${detailPath}/${csid}`,
-            state: {
-              index: index + 1,
-              searchParams: searchParamsObj,
-            },
-          }}
-        >
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          <FormattedMessage {...messages.next} />
-        </Link>
-      </span>
-    );
-  }
-
-  const queryString = searchParamsToQueryString(searchParams);
 
   return (
     <nav className={styles.common}>
