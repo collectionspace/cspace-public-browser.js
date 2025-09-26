@@ -17,12 +17,16 @@ const propTypes = {
     formatMessage: PropTypes.func.isRequired,
   }).isRequired,
   media: PropTypes.instanceOf(Immutable.Map),
+  detailData: PropTypes.shape({
+    'collectionobjects_common:titleGroupList': PropTypes.array,
+  }),
   referenceValue: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   institutionId: undefined,
   media: undefined,
+  detailData: undefined,
   findMedia: () => undefined,
 };
 
@@ -97,6 +101,7 @@ class ImageGallery extends Component {
       institutionId,
       intl,
       media,
+      detailData,
     } = this.props;
 
     if (!media) {
@@ -111,9 +116,11 @@ class ImageGallery extends Component {
 
     institutionIds.forEach((instId) => {
       const mediaMap = media.get(instId) || Immutable.Map();
-      const title = mediaMap.get('title');
       const mediaCsids = mediaMap.get('csids') || Immutable.List();
       const mediaAltTexts = mediaMap.get('altTexts') || Immutable.List();
+
+      const titleFormatter = config.get('detailTitle');
+      const title = titleFormatter && titleFormatter(detailData);
 
       if (mediaCsids && mediaCsids.size > 0) {
         const gatewayUrl = instId
