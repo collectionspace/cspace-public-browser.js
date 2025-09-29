@@ -57,3 +57,13 @@ Overrides the top-level [`filterOrder`](#filterOrder) setting, for this field.
 
 #### `size`
 Overrides the top-level [`filterSize`](#filterSize) setting, for this field.
+
+### `mediaSnapshotSort`
+Contains configuration for sorting images in object details view. The options are: `'identificationNumber'`, `'title'`, `'updatedAt'`.
+
+Default:
+```
+mediaSnapshotSort: {
+    title: 'asc',
+},
+```

@@ -43,8 +43,9 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
   const url = `${gatewayUrl}/es/doc/_search`;
   const referenceField = config.get('referenceField');
 
-  const sortParam = sortParams[config.get('mediaSnapshotSort')];
-  const sortDirection = config.get('mediaSnapshotSortDirection');
+  const sortParam = sortParams[Object.keys(config.get('mediaSnapshotSort'))[0]];
+  const sortDirection = config.get('mediaSnapshotSort')[sortParam];
+
   const query = {
     _source: [referenceField, 'media_common:altText'],
     query: {
