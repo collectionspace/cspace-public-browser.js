@@ -41,12 +41,13 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
   }
 
   const url = `${gatewayUrl}/es/doc/_search`;
+  const referenceField = config.get('referenceField');
 
   const sortField = Object.keys(config.get('mediaSnapshotSort'))[0];
   const sortDirection = config.get('mediaSnapshotSort')[sortField];
 
   const query = {
-    _source: ['media_common:blobCsid', 'media_common:altText'],
+    _source: [referenceField, 'media_common:altText'],
     query: {
       terms: {
         'collectionspace_denorm:objectCsid': [referenceValue],
@@ -66,7 +67,7 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
     .then((response) => response.json())
     .then((data) => {
       const hits = get(data, ['hits', 'hits'], []);
-      const mediaCsids = hits.map((hit) => get(hit, ['_source', 'media_common:blobCsid'], ''));
+      const mediaCsids = hits.map((hit) => get(hit, ['_source', referenceField], ''));
       const mediaAltTexts = hits.map((hit) => get(hit, ['_source', 'media_common:altText'], ''));
 
       return dispatch(setMedia(referenceValue, institutionId, mediaCsids, mediaAltTexts));
