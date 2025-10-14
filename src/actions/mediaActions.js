@@ -8,10 +8,16 @@ import {
   SET_MEDIA,
 } from '../constants/actionCodes';
 
-export const setMedia = (referenceValue, institutionId, mediaCsids, mediaAltTexts, title) => ({
+// TODO: this should not be hardcoded here. Check deriving from plugin or shared lib
+const sortParams = {
+  updatedAt: 'collectionspace_core:updatedAt',
+  identificationNumber: 'media_common:identificationNumber',
+  title: 'media_common:title',
+};
+
+export const setMedia = (referenceValue, institutionId, mediaCsids, mediaAltTexts) => ({
   type: SET_MEDIA,
   payload: {
-    title,
     csids: mediaCsids,
     altTexts: mediaAltTexts,
   },
@@ -37,15 +43,20 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
   const url = `${gatewayUrl}/es/doc/_search`;
   const referenceField = config.get('referenceField');
 
+  const sortField = Object.keys(config.get('mediaSnapshotSort'))[0];
+  const sortDirection = config.get('mediaSnapshotSort')[sortField];
+
   const query = {
-    _source: ['collectionspace_denorm:mediaCsid', 'collectionspace_denorm:mediaAltText', 'collectionspace_denorm:title'],
+    _source: [referenceField, 'media_common:altText'],
     query: {
-      term: {
-        [referenceField]: referenceValue,
+      terms: {
+        'collectionspace_denorm:objectCsid': [referenceValue],
       },
     },
-    size: 1,
-    terminate_after: 1,
+    sort: {
+      [sortParams[sortField]]: sortDirection,
+    },
+    size: 10000, // TODO: check if we should use scroll API instead of hardcoding the size
   };
 
   return fetch(url, {
@@ -55,11 +66,10 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
   })
     .then((response) => response.json())
     .then((data) => {
-      const source = get(data, ['hits', 'hits', 0, '_source']);
-      const title = get(source, 'collectionspace_denorm:title');
-      const mediaCsids = get(source, 'collectionspace_denorm:mediaCsid') || [];
-      const mediaAltTexts = get(source, 'collectionspace_denorm:mediaAltText') || [];
+      const hits = get(data, ['hits', 'hits'], []);
+      const mediaCsids = hits.map((hit) => get(hit, ['_source', referenceField], ''));
+      const mediaAltTexts = hits.map((hit) => get(hit, ['_source', 'media_common:altText'], ''));
 
-      return dispatch(setMedia(referenceValue, institutionId, mediaCsids, mediaAltTexts, title));
+      return dispatch(setMedia(referenceValue, institutionId, mediaCsids, mediaAltTexts));
     });
 };
