@@ -1,31 +1,50 @@
-/* global document */
 import React from 'react';
 import { render } from 'react-dom';
-import { act } from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router';
 import { IntlProvider } from 'react-intl';
+import axe from 'axe-core';
 import DetailNavBar from '../../../../src/components/detail/DetailNavBar';
 import styles from '../../../../styles/cspace/DetailNavBar.css';
+import {
+  createTestContainer,
+  throwAxeViolationsError,
+} from '../../../helpers/utils';
 
 chai.should();
 
 describe('DetailNavBar', () => {
-  it('should render without search params', async () => {
-    const container = document.createElement('div');
-    document.body.appendChild(container);
+  beforeEach(function before() {
+    this.container = createTestContainer(this);
+  });
 
-    act(() => {
-      render(
-        <IntlProvider locale="en">
-          <MemoryRouter>
-            <DetailNavBar />
-          </MemoryRouter>
-        </IntlProvider>,
-        container,
-      );
-    });
+  it('should render without search params', function test() {
+    render(
+      <IntlProvider locale="en">
+        <MemoryRouter>
+          <DetailNavBar />
+        </MemoryRouter>
+      </IntlProvider>,
+      this.container,
+    );
 
-    container.firstElementChild.nodeName.should.equal('NAV');
-    container.firstElementChild.className.should.equal(styles.common);
+    this.container.firstElementChild.nodeName.should.equal('NAV');
+    this.container.firstElementChild.className.should.equal(styles.common);
+  });
+
+  it('should render without a11y violations', async function test() {
+    render(
+      <IntlProvider locale="en">
+        <MemoryRouter>
+          <DetailNavBar />
+        </MemoryRouter>
+      </IntlProvider>,
+      this.container,
+    );
+
+    const results = await axe.run(this.container);
+    if (results.violations.length > 0) {
+      throwAxeViolationsError(results.violations);
+    }
+    results.violations.length.should.equal(0);
   });
 });
