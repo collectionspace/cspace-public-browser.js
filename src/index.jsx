@@ -1,7 +1,7 @@
 /* global document, window */
 
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import { RawIntlProvider } from 'react-intl';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
@@ -52,6 +52,15 @@ const cspacePublicBrowser = (...customConfigs) => {
     </RawIntlProvider>,
     mountNode,
   );
+
+  // Run accessibility checks in dev and log issues in console
+  if (process.env.NODE_ENV === 'development') {
+    (async () => {
+      // eslint-disable-next-line import/no-extraneous-dependencies
+      const axe = await import('@axe-core/react');
+      await axe.default(React, ReactDOM, 1000);
+    })();
+  }
 };
 
 cspacePublicBrowser.formatters = formatters;

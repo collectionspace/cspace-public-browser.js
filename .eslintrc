@@ -2,9 +2,12 @@
   "extends": [
     "airbnb"
   ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "rules": {
     // TODO: Use more specific prop types where needed.
     "react/forbid-prop-types": "off",
-    "linebreak-style": 0,
+    "linebreak-style": 0
   }
 }

@@ -13,3 +13,6 @@
 **Has the [public browser documentation](https://collectionspace.atlassian.net/wiki/spaces/COL/pages/666274513/Public+Collections+Browser) been updated for these changes?**
 
 **Did someone actually run this code to verify it works?**
+
+**Have any new accessibility violations been handled?**
+[Check browser console for any accessibility (axe) violations introduced and describe how they have been handled]
