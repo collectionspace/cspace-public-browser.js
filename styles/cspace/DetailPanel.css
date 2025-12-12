@@ -8,6 +8,7 @@
   grid-template-areas:
     "header header"
     "desc desc"
+    "exh exh"
     "fields1 gallery"
     "fields1 fields2"
     "inst inst";
