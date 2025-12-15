@@ -214,11 +214,13 @@ export default class DetailPanel extends Component {
       <div className={styles.common}>
         {this.renderPageTitle()}
         {this.renderHeader()}
-        {this.renderDescription()}
-        {this.renderImageGallery()}
-        {this.renderFieldList()}
-        {this.renderInstitutions()}
-        {this.renderExhibition()}
+        <main>
+          {this.renderDescription()}
+          {this.renderImageGallery()}
+          {this.renderFieldList()}
+          {this.renderInstitutions()}
+          {this.renderExhibition()}
+        </main>
       </div>
     );
   }
