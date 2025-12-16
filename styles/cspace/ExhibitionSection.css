@@ -1,6 +1,6 @@
 .common {
   grid-column: 1 / span 3;
-  margin-top: 30px;
+  grid-area: exh;
 }
 
 .common div {
