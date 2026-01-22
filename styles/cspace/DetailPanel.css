@@ -31,7 +31,7 @@
 }
 
 .common p:empty {
-  padding-bottom: 1.75em;
+  padding-bottom: 1em;
 }
 
 .common :global(.cspace-ImageGallery--common) {
