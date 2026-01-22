@@ -28,6 +28,10 @@ const messages = defineMessages({
     id: 'FilterPanel.title',
     defaultMessage: 'Refine results:',
   },
+  noFiltersCanBeApplied: {
+    id: 'FilterPanel.noFiltersCanBeApplied',
+    defaultMessage: 'No filters can be applied',
+  },
 });
 
 const {
@@ -95,7 +99,7 @@ export default class FilterPanel extends Component {
 
     const isVisible = (window.innerWidth > filterPanelCutoffWidth) || isExpanded;
 
-    if (!isVisible || !result.get('total')) {
+    if (!isVisible) {
       return undefined;
     }
 
@@ -106,11 +110,20 @@ export default class FilterPanel extends Component {
           <FormattedMessage {...messages.title} />
         </header>
 
-        <FilterList
-          aggregations={result.get('aggregations')}
-          config={config.get('filters')}
-          isPending={isPending}
-        />
+        {
+          !result.get('total') ? (
+            <div className={styles.p20}>
+              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+              <FormattedMessage {...messages.noFiltersCanBeApplied} />
+            </div>
+          ) : (
+            <FilterList
+              aggregations={result.get('aggregations')}
+              config={config.get('filters')}
+              isPending={isPending}
+            />
+          )
+        }
       </div>
     );
   }

@@ -137,10 +137,12 @@ class SearchPage extends Component {
             onClick={this.handleToggleFilterPanelButtonClick}
           />
 
-          <FilterPanel
-            api={this.handleFilterPanelApi}
-            isExpanded={isFilterPanelExpanded}
-          />
+          <aside>
+            <FilterPanel
+              api={this.handleFilterPanelApi}
+              isExpanded={isFilterPanelExpanded}
+            />
+          </aside>
         </Fixed>
 
         <SearchResultPanel
