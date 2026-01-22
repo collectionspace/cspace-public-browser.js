@@ -30,10 +30,15 @@
   grid-area: desc;
 }
 
+.common p:empty {
+  padding-bottom: 1.75em;
+}
+
 .common :global(.cspace-ImageGallery--common) {
   grid-area: gallery;
 }
 
+.common p,
 .common h1,
 .common h2 {
   margin: 0;
