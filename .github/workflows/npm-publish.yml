@@ -6,7 +6,11 @@ name: Publish NPM Package
 on:
   release:
     types: [created]
-
+    
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+  
 jobs:
   check-code:
     name: check-code
@@ -24,5 +28,3 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
