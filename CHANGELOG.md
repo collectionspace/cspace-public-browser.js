@@ -1,3 +1,9 @@
+## v3.5.0
+- Add configurable image ordering (default: updated-at descending)
+- Fix exhibition layout issue
+- Improve filter sidebar UX
+- Fix paragraph padding
+
 ## v3.3.0
 
 - Display all brief descriptions when available
