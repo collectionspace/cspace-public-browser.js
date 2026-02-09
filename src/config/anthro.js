@@ -119,6 +119,15 @@ export default {
         field: 'collectionobjects_common:fieldCollectors',
         format: listOf(displayName),
       },
+      materialTechniqueDescription: {
+        messages: defineMessages({
+          label: {
+            id: 'detailField.materialTechniqueDescription.label',
+            defaultMessage: 'Medium',
+          },
+        }),
+        field: 'collectionobjects_anthro:materialTechniqueDescription',
+      },
     },
     groups: {
       group_collection: {
@@ -135,6 +144,7 @@ export default {
       },
       group_description: {
         fields: [
+          'materialTechniqueDescription',
           'material',
           'technique',
           'subject',
