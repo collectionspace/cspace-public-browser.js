@@ -3,6 +3,7 @@
 - Fix exhibition layout issue
 - Improve filter sidebar UX
 - Fix paragraph padding
+- Add `materialTechniqueDescription` field in anthro
 
 ## v3.3.0
 
