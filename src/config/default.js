@@ -1,5 +1,6 @@
 import { defineMessages } from 'react-intl';
 import { getIntl } from '../intl';
+import config from './index'; // Import config to access merged departmentMessages
 
 import {
   boolean,
@@ -16,7 +17,7 @@ import {
   valueAt,
 } from '../helpers/formatHelpers';
 
-const departmentMessages = defineMessages({
+const defaultDepartmentMessages = defineMessages({
   antiquities: {
     id: 'option.departments.antiquities',
     defaultMessage: 'Antiquities',
@@ -59,9 +60,21 @@ const departmentMessages = defineMessages({
   },
 });
 
-const formatDepartment = (data) => {
-  const message = departmentMessages[data];
+const getDepartmentMessages = () => {
+  const customMessages = config.get('departmentMessages');
+  if (customMessages) {
+    // Merge custom messages with defaults
+    return {
+      ...defaultDepartmentMessages,
+      ...customMessages,
+    };
+  }
+  return defaultDepartmentMessages;
+};
 
+const formatDepartment = (data) => {
+  const departmentMessages = getDepartmentMessages();
+  const message = departmentMessages[data];
   return message ? getIntl().formatMessage(message) : data;
 };
 
