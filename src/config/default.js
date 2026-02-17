@@ -1,6 +1,5 @@
 import { defineMessages } from 'react-intl';
 import { getIntl } from '../intl';
-import config from './index'; // Import config to access merged departmentMessages
 
 import {
   boolean,
@@ -61,6 +60,8 @@ const defaultDepartmentMessages = defineMessages({
 });
 
 const getDepartmentMessages = () => {
+  // eslint-disable-next-line global-require
+  const config = require('./index').default;
   const customMessages = config.get('departmentMessages');
   if (customMessages) {
     // Merge custom messages with defaults
