@@ -9,7 +9,6 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <script src="https://unpkg.com/react-intl@6.4.4/index.js"></script>
   <!--
     webpack dev server generates a JS bundle into memory, and updates it as files are edited.
     This bundle is served from the URL /cspacePublicBrowser.js, but it does not exist in the
@@ -38,12 +37,6 @@
 
     cspacePublicBrowser({
       gatewayUrl: 'https://core.dev.collectionspace.org/gateway/core',
-      departmentMessages: defineMessages({
-        'test-department': {
-          id: 'option.departments.test-department',
-          defaultMessage: 'Test Department',
-        },
-      }),
     });
 
     // cspacePublicBrowser({

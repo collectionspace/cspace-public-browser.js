@@ -1,9 +1,10 @@
 ## v3.5.0
-- Add configurable image ordering (default: updated-at descending)
+- Add configurable image ordering (default: title ascending)
 - Fix exhibition layout issue
 - Improve filter sidebar UX
 - Fix paragraph padding
 - Add `materialTechniqueDescription` field in anthro
+- Add configurable department labels
 
 ## v3.3.0
 
