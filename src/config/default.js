@@ -1,5 +1,6 @@
 import { defineMessages } from 'react-intl';
 
+import memoize from 'memoize-one';
 import {
   boolean,
   decade,
@@ -28,20 +29,20 @@ const defaultDepartmentLabels = {
   'prints-drawings': 'Prints and Drawings',
 };
 
-const getDepartmentLabels = () => {
+const getDepartmentLabels = memoize(() => {
   // lazy importing to avoid circular dependency
   // eslint-disable-next-line global-require
   const config = require('./index').default;
-  const customMessages = config.get('departmentLabels');
-  if (customMessages) {
+  const customLabels = config.get('departmentLabels');
+  if (customLabels) {
     // Merge custom messages with defaults
     return {
       ...defaultDepartmentLabels,
-      ...customMessages,
+      ...customLabels,
     };
   }
   return defaultDepartmentLabels;
-};
+});
 
 const formatDepartment = (data) => {
   const departmentLabels = getDepartmentLabels();
