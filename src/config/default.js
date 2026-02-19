@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
-import { getIntl } from '../intl';
 
+import memoize from 'memoize-one';
 import {
   boolean,
   decade,
@@ -16,53 +16,38 @@ import {
   valueAt,
 } from '../helpers/formatHelpers';
 
-const departmentMessages = defineMessages({
-  antiquities: {
-    id: 'option.departments.antiquities',
-    defaultMessage: 'Antiquities',
-  },
-  'architecture-design': {
-    id: 'option.departments.architecture-design',
-    defaultMessage: 'Architecture and Design',
-  },
-  'decorative-arts': {
-    id: 'option.departments.decorative-arts',
-    defaultMessage: 'Decorative Arts',
-  },
-  ethnography: {
-    id: 'option.departments.ethnography',
-    defaultMessage: 'Ethnography',
-  },
-  herpetology: {
-    id: 'option.departments.herpetology',
-    defaultMessage: 'Herpetology',
-  },
-  'media-performance-art': {
-    id: 'option.departments.media-performance-art',
-    defaultMessage: 'Media and Performance Art',
-  },
-  'paintings-sculpture': {
-    id: 'option.departments.paintings-sculpture',
-    defaultMessage: 'Paintings and Sculpture',
-  },
-  paleobotany: {
-    id: 'option.departments.paleobotany',
-    defaultMessage: 'Paleobotany',
-  },
-  photographs: {
-    id: 'option.departments.photographs',
-    defaultMessage: 'Photographs',
-  },
-  'prints-drawings': {
-    id: 'option.departments.prints-drawings',
-    defaultMessage: 'Prints and Drawings',
-  },
+const defaultDepartmentLabels = {
+  antiquities: 'Antiquities',
+  'architecture-design': 'Architecture and Design',
+  'decorative-arts': 'Decorative Arts',
+  ethnography: 'Ethnography',
+  herpetology: 'Herpetology',
+  'media-performance-art': 'Media and Performance Art',
+  'paintings-sculpture': 'Paintings and Sculpture',
+  paleobotany: 'Paleobotany',
+  photographs: 'Photographs',
+  'prints-drawings': 'Prints and Drawings',
+};
+
+const getDepartmentLabels = memoize(() => {
+  // lazy importing to avoid circular dependency
+  // eslint-disable-next-line global-require
+  const config = require('./index').default;
+  const customLabels = config.get('departmentLabels');
+  if (customLabels) {
+    // Merge custom messages with defaults
+    return {
+      ...defaultDepartmentLabels,
+      ...customLabels,
+    };
+  }
+  return defaultDepartmentLabels;
 });
 
 const formatDepartment = (data) => {
-  const message = departmentMessages[data];
-
-  return message ? getIntl().formatMessage(message) : data;
+  const departmentLabels = getDepartmentLabels();
+  const message = departmentLabels[data];
+  return message ?? data;
 };
 
 export default {

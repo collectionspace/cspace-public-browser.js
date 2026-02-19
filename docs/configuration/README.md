@@ -67,3 +67,16 @@ mediaSnapshotSort: {
     title: 'asc',
 },
 ```
+
+### `departmentLabels`
+
+Optional.
+
+An object mapping department keys to display labels. Use this to override or add display names for departments in the application. The keys should match the values stored in the `responsibleDepartments` field of your data.
+
+Example:
+```
+departmentLabels: {
+    'antiquities': 'Antiquities',
+},
+```
