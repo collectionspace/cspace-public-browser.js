@@ -59,13 +59,11 @@ Overrides the top-level [`filterOrder`](#filterOrder) setting, for this field.
 Overrides the top-level [`filterSize`](#filterSize) setting, for this field.
 
 ### `mediaSnapshotSort`
-Contains configuration for sorting images in object details view. The options are: `'identificationNumber'`, `'title'`, `'updatedAt'`.
+Configures the sort order for images in object details view. The value is a string in the form `'<field>:<direction>'`. Supported fields are `'identificationNumber'`, `'title'`, `'updatedAt'`. Direction is `'asc'` or `'desc'`.
 
 Default:
 ```
-mediaSnapshotSort: {
-    title: 'asc',
-},
+mediaSnapshotSort: 'updatedAt:desc',
 ```
 
 ### `departmentLabels`
