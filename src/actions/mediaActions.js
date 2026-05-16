@@ -52,10 +52,8 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
         'collectionspace_denorm:objectCsid': [referenceValue],
       },
     },
-    ...sortField && {
-      sort: {
-        [sortParams[sortField]]: sortDirection,
-      },
+    sort: {
+      [sortParams[sortField]]: sortDirection,
     },
     size: 10000, // TODO: check if we should use scroll API instead of hardcoding the size
   };
