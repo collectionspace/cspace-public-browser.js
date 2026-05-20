@@ -1,3 +1,6 @@
+## v3.5.1
+- Fix configurable image ordering (default updated at descending)
+
 ## v3.5.0
 - Add configurable image ordering (default: title ascending)
 - Fix exhibition layout issue
