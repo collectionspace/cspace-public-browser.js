@@ -43,7 +43,11 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
   const url = `${gatewayUrl}/es/doc/_search`;
   const referenceField = config.get('referenceField');
 
-  const [sortField, sortDirection] = config.get('mediaSnapshotSort').split(':');
+  const mediaSnapshotSortConfig = config.get('mediaSnapshotSort');
+  const [sortField, sortDirection] = typeof mediaSnapshotSortConfig === 'string'
+    ? mediaSnapshotSortConfig.split(':')
+    : [];
+  const validSort = sortParams[sortField] && (sortDirection === 'asc' || sortDirection === 'desc');
 
   const query = {
     _source: [referenceField, 'media_common:altText'],
@@ -52,9 +56,7 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
         'collectionspace_denorm:objectCsid': [referenceValue],
       },
     },
-    sort: {
-      [sortParams[sortField]]: sortDirection,
-    },
+    ...(validSort && { sort: { [sortParams[sortField]]: sortDirection } }),
     size: 10000, // TODO: check if we should use scroll API instead of hardcoding the size
   };
 
