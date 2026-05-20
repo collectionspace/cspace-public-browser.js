@@ -94,9 +94,7 @@ export default {
   sortField: 'collectionspace_denorm:title',
   storageKey: 'cspace-browser',
 
-  mediaSnapshotSort: {
-    title: 'asc',
-  },
+  mediaSnapshotSort: 'updatedAt:desc',
 
   searchResultImageDerivative: 'Small',
   detailImageDerivative: 'Medium',
