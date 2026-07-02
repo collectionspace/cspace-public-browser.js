@@ -1,3 +1,6 @@
+## v3.6.0
+- Display images in the order given by the record's priority image list (`collectionspace_denorm:priorityImageList`), when available. The first priority image is used as the search result thumbnail, and the detail page gallery shows priority images without making a separate media query.
+
 ## v3.5.1
 - Fix configurable image ordering (default: updated at descending)
 
