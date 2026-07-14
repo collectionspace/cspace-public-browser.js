@@ -104,7 +104,7 @@ export default {
     formatValue: displayName,
   },
 
-  filterOrder: { _term: 'asc' },
+  filterOrder: { _key: 'asc' },
   filterSize: 300,
 
   filters: {
