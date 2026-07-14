@@ -40,7 +40,7 @@ export const findMedia = (referenceValue, institutionId) => (dispatch, getState)
     gatewayUrl = config.get(['institutions', institutionId, 'gatewayUrl']);
   }
 
-  const url = `${gatewayUrl}/es/doc/_search`;
+  const url = `${gatewayUrl}/es/_search`;
   const referenceField = config.get('referenceField');
 
   const mediaSnapshotSortConfig = config.get('mediaSnapshotSort');
