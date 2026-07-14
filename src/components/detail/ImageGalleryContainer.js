@@ -9,12 +9,12 @@ const mapStateToProps = (state, ownProps) => {
 
   let media = getMedia(state, ownProps.referenceValue);
 
-  const priorityImages = detailData && detailData['collectionspace_denorm:priorityImageList'];
+  const mediaPriorityImages = detailData && detailData['collectionspace_denorm:mediaPriorityList'];
 
-  if (priorityImages && priorityImages.length > 0) {
+  if (mediaPriorityImages && mediaPriorityImages.length > 0) {
     media = (media || Immutable.Map()).set(null, Immutable.fromJS({
-      csids: priorityImages.map((image) => image.csid),
-      altTexts: priorityImages.map((image) => image.altText),
+      csids: mediaPriorityImages.map((image) => image.csid),
+      altTexts: mediaPriorityImages.map((image) => image.altText),
     }));
   }
 

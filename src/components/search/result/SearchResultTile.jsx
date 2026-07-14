@@ -32,7 +32,7 @@ export default function SearchResultTile(props) {
   const csid = doc.get('ecm:name');
   const url = csid && `/${detailPath}/${csid}`;
   const holdingInstitutions = doc.get('collectionspace_denorm:holdingInstitutions');
-  const mediaCsid = doc.getIn(['collectionspace_denorm:priorityImageList', 0, 'csid'])
+  const mediaCsid = doc.getIn(['collectionspace_denorm:mediaPriorityList', 0, 'csid'])
     || doc.getIn(['collectionspace_denorm:mediaCsid', 0]);
   const referenceValue = doc.get(referenceField);
 

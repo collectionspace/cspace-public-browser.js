@@ -85,7 +85,7 @@ export default {
     'ecm:name',
     'ecm:primaryType',
     'collectionspace_denorm:mediaCsid',
-    'collectionspace_denorm:priorityImageList',
+    'collectionspace_denorm:mediaPriorityList',
     'collectionspace_denorm:title',
   ],
 
