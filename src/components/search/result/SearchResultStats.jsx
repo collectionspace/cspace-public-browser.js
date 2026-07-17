@@ -4,14 +4,11 @@ import { defineMessages, FormattedMessage } from 'react-intl';
 import styles from '../../../../styles/cspace/SearchResultStats.css';
 
 const propTypes = {
-  total: PropTypes.shape({
-    value: PropTypes.number,
-    relation: PropTypes.string,
-  }),
+  count: PropTypes.number,
 };
 
 const defaultProps = {
-  total: undefined,
+  count: undefined,
 };
 
 const messages = defineMessages({
@@ -26,10 +23,9 @@ const messages = defineMessages({
 
 export default function SearchResultStats(props) {
   const {
-    total,
+    count,
   } = props;
 
-  const count = total ? total.value : 0;
   return (
     <div className={styles.common} aria-live="polite">
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}

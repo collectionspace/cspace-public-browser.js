@@ -138,7 +138,7 @@ export default class SearchResultPanel extends Component {
           <SearchParamList params={params} />
 
           <div>
-            <SearchResultStats total={hitCount} />
+            <SearchResultStats count={hitCount} />
             <SortSelect value={params.get(SORT_ID)} />
           </div>
         </header>
