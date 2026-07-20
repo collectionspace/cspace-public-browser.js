@@ -275,6 +275,7 @@ export default {
       hasMedia: {
         field: 'collectionspace_denorm:hasMedia',
         formatValue: boolean,
+        valueIdentifier: 'key_as_string',
         showSearch: false,
         messages: defineMessages({
           label: {

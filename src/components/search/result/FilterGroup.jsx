@@ -58,6 +58,7 @@ export default function FilterGroup(props) {
           const {
             field,
             formatValue,
+            valueIdentifier,
             messages: fieldMessages,
             showSearch,
           } = fieldsConfig[fieldId];
@@ -68,6 +69,7 @@ export default function FilterGroup(props) {
               id={fieldId}
               field={field}
               formatValue={formatValue}
+              valueIdentifier={valueIdentifier}
               key={fieldId}
               messages={fieldMessages}
               showSearch={showSearch}
