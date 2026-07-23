@@ -12,6 +12,7 @@ const propTypes = {
   aggregation: PropTypes.instanceOf(Immutable.Map),
   field: PropTypes.string.isRequired,
   formatValue: PropTypes.func,
+  valueIdentifier: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
@@ -29,6 +30,7 @@ const propTypes = {
 const defaultProps = {
   aggregation: Immutable.Map(),
   formatValue: undefined,
+  valueIdentifier: 'key',
   onSearchValueCommit: () => undefined,
   onValueCommit: () => undefined,
   searchValue: undefined,
@@ -42,7 +44,7 @@ const messages = defineMessages({
   },
 });
 
-const getFormattedValues = memoize((aggregation, formatValue) => {
+const getFormattedValues = memoize((aggregation, formatValue, valueIdentifier) => {
   if (!formatValue) {
     return undefined;
   }
@@ -50,7 +52,7 @@ const getFormattedValues = memoize((aggregation, formatValue) => {
   const formattedValues = {};
 
   aggregation.get('buckets').forEach((bucket) => {
-    const value = bucket.get('key');
+    const value = bucket.get(valueIdentifier);
     const formattedValue = formatValue(value);
 
     formattedValues[value] = formattedValue;
@@ -116,12 +118,13 @@ class Filter extends Component {
     const {
       aggregation,
       formatValue,
+      valueIdentifier,
       id,
       params,
       searchValue,
     } = this.props;
 
-    const formattedValues = getFormattedValues(aggregation, formatValue);
+    const formattedValues = getFormattedValues(aggregation, formatValue, valueIdentifier);
     const buckets = aggregation.get('buckets');
 
     let matchingBuckets = buckets;
@@ -130,7 +133,7 @@ class Filter extends Component {
       const needle = searchValue.toLowerCase();
 
       matchingBuckets = buckets.filter((bucket) => {
-        const value = bucket.get('key');
+        const value = bucket.get(valueIdentifier);
         const formattedValue = formattedValues ? formattedValues[value] : value;
         const haystack = formattedValue.toLowerCase();
 
@@ -145,7 +148,7 @@ class Filter extends Component {
     }
 
     return matchingBuckets.map((bucket, index) => {
-      const value = bucket.get('key');
+      const value = bucket.get(valueIdentifier);
       const type = typeof value;
       const count = bucket.get('doc_count');
       const isSelected = (selectedValues.indexOf(value) >= 0);

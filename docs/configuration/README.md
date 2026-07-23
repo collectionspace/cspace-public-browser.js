@@ -19,9 +19,9 @@ The name of a configuration set to apply over the default configuration. Can be 
 To view the contents of a named configuration set, refer to the corresponding .js file in the [config](../../src/config/) directory.
 
 ## `filterOrder`
-Default: `{ _term: 'asc' }`
+Default: `{ _key: 'asc' }`
 
-The sort order of filter values appearing in the "Refine results" sidebar. This can be set to `{ _term: 'asc' }` to sort alphabetically, or to `{ _count: 'desc' }` to sort by the number of search results containing the value (highest to lowest).
+The sort order of filter values appearing in the "Refine results" sidebar. This can be set to `{ _key: 'asc' }` to sort alphabetically, or to `{ _count: 'desc' }` to sort by the number of search results containing the value (highest to lowest).
 
 This setting can be [overridden on a per-filter basis](#order).
 

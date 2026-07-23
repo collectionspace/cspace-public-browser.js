@@ -105,7 +105,7 @@ export default {
     formatValue: displayName,
   },
 
-  filterOrder: { _term: 'asc' },
+  filterOrder: { _key: 'asc' },
   filterSize: 300,
 
   filters: {
@@ -276,6 +276,7 @@ export default {
       hasMedia: {
         field: 'collectionspace_denorm:hasMedia',
         formatValue: boolean,
+        valueIdentifier: 'key_as_string',
         showSearch: false,
         messages: defineMessages({
           label: {

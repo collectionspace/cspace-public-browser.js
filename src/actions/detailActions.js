@@ -70,7 +70,7 @@ export const findInstitutionHoldings = (institutionId) => (dispatch, getState) =
     gatewayUrl,
   } = institutionConfig;
 
-  const url = `${gatewayUrl}/es/doc/_search`;
+  const url = `${gatewayUrl}/es/_search`;
   const query = queryBuilder(data);
 
   const payload = {
@@ -153,7 +153,7 @@ export const readDetail = () => (dispatch, getState) => {
   }
 
   const gatewayUrl = config.get('gatewayUrl');
-  const url = `${gatewayUrl}/es/doc/_msearch`;
+  const url = `${gatewayUrl}/es/_msearch`;
 
   const csid = params.get('csid');
   const index = params.get('index');

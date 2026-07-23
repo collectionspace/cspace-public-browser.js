@@ -87,16 +87,7 @@ const renderList = (values, inline = false) => {
 
 export const unformatted = (data) => data;
 
-export const boolean = (value) => {
-  switch (value) {
-    case 0:
-      return 'No';
-    case 1:
-      return 'Yes';
-    default:
-      return value;
-  }
-};
+export const boolean = (value) => (value === 'true' ? 'Yes' : 'No');
 
 export const literal = (value) => () => value;
 

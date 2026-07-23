@@ -42,7 +42,8 @@ const handleSearchFulfilled = (state, action) => {
 
   let nextResult = currentResult
     .set('params', searchParams)
-    .set('total', hits.total)
+    // ES 6 has total as a number and later version have it as an object with a value and relation
+    .set('total', typeof hits.total === 'number' ? hits.total : hits.total.value)
     .set('hits', nextHits);
 
   if (offset === 0) {
