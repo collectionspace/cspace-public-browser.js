@@ -1,5 +1,14 @@
-## v3.6.0
-- Display images in the order given by the record's media priority list (`collectionspace_denorm:mediaPriorityList`), when available. The first priority image is used as the search result thumbnail, and the detail page gallery shows priority images without making a separate media query.
+## v4.0.0
+
+Version 4.0.0 requires CollectionSpace 9.0 with ElasticSearch 7 support, and works with
+ElasticSearch 7.17.x and OpenSearch 1. Compatibility with ElasticSearch 5 has been dropped
+(ES 5 reached end of life in 2019).
+
+- Add ElasticSearch 7 support
+- Display images in the order given by the record's media priority list
+(`collectionspace_denorm:mediaPriorityList`), when available. The first priority image 
+is used as the search result thumbnail, and the detail page gallery shows priority images 
+without making a separate media query.
 
 ## v3.5.1
 - Fix configurable image ordering (default: updated at descending)
