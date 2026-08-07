@@ -9,6 +9,7 @@ ElasticSearch 7.17.x and OpenSearch 1. Compatibility with ElasticSearch 5 has be
 (`collectionspace_denorm:mediaPriorityList`), when available. The first priority image 
 is used as the search result thumbnail, and the detail page gallery shows priority images 
 without making a separate media query.
+- Change configurable image ordering default to title ascending, matching Staff UI.
 
 ## v3.5.1
 - Fix configurable image ordering (default: updated at descending)

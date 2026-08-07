@@ -63,7 +63,7 @@ Configures the sort order for images in object details view. The value is a stri
 
 Default:
 ```
-mediaSnapshotSort: 'updatedAt:desc',
+mediaSnapshotSort: 'title:asc',
 ```
 
 ### `departmentLabels`
