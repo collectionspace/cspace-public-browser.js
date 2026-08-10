@@ -10,16 +10,22 @@ import config from '../../../config';
 import styles from '../../../../styles/cspace/SearchResultImage.css';
 
 const propTypes = {
+  findMedia: PropTypes.func,
   gatewayUrl: PropTypes.string.isRequired,
+  hasRelatedMedia: PropTypes.bool,
   holdingInstitutions: PropTypes.instanceOf(Immutable.List),
   loadImageImmediately: PropTypes.bool,
+  media: PropTypes.instanceOf(Immutable.Map),
   mediaCsid: PropTypes.string,
   referenceValue: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
+  findMedia: () => undefined,
+  hasRelatedMedia: false,
   holdingInstitutions: Immutable.List(),
   loadImageImmediately: false,
+  media: undefined,
   mediaCsid: undefined,
 };
 
@@ -67,16 +73,34 @@ export default class SearchResultImage extends Component {
   componentDidUpdate(prevProps) {
     const {
       gatewayUrl: prevGatewayUrl,
+      media: prevMedia,
       mediaCsid: prevMediaCsid,
       referenceValue: prevReferenceValue,
     } = prevProps;
 
     const {
+      hasRelatedMedia,
       holdingInstitutions,
       gatewayUrl,
+      media,
       mediaCsid,
       referenceValue,
     } = this.props;
+
+    if (
+      media
+      && media !== prevMedia
+      && hasRelatedMedia
+      && typeof mediaCsid === 'undefined'
+    ) {
+      // The media sorted per the mediaSnapshotSort configuration has been retrieved, in response
+      // to the findMedia call in init.
+
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        mediaCsid: media.get('csids', Immutable.List()).first() || null,
+      });
+    }
 
     if (
       mediaCsid !== prevMediaCsid
@@ -151,6 +175,29 @@ export default class SearchResultImage extends Component {
       this.setState({
         mediaCsid,
       });
+
+      return;
+    }
+
+    const {
+      findMedia,
+      hasRelatedMedia,
+      media,
+    } = this.props;
+
+    if (hasRelatedMedia) {
+      // There are multiple related media records, and no priority order has been set. Find the
+      // media, sorted per the mediaSnapshotSort configuration, and use the first as the
+      // thumbnail. If the media has not been retrieved yet, request it. The result is delivered
+      // through the media prop, and handled in componentDidUpdate.
+
+      if (media) {
+        this.setState({
+          mediaCsid: media.get('csids', Immutable.List()).first() || null,
+        });
+      } else {
+        findMedia(referenceValue, null);
+      }
 
       return;
     }
