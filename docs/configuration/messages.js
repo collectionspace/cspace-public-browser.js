@@ -20,6 +20,8 @@ export default {
 
   "detailField.materialTechniqueDescription.label": "Medium",
 
+  "detailField.materialTechniqueDescription.label": "Medium",
+
   "detailField.measuredPart.label": "Dimensions",
 
   "detailField.objectName.label": "Name",
@@ -266,6 +268,8 @@ export default {
 
   "filterGroup.group_use.label": "Use",
 
+  "FilterPanel.noFiltersCanBeApplied": "No filters can be applied",
+
   "FilterPanel.title": "Refine results:",
 
   "filterSearchInput.label": "Search",
@@ -279,26 +283,6 @@ export default {
   "institutionHoldingList.title": "Samples at {title}",
 
   "institutionIndex.label": "Holdings at {title}",
-
-  "option.departments.antiquities": "Antiquities",
-
-  "option.departments.architecture-design": "Architecture and Design",
-
-  "option.departments.decorative-arts": "Decorative Arts",
-
-  "option.departments.ethnography": "Ethnography",
-
-  "option.departments.herpetology": "Herpetology",
-
-  "option.departments.media-performance-art": "Media and Performance Art",
-
-  "option.departments.paintings-sculpture": "Paintings and Sculpture",
-
-  "option.departments.paleobotany": "Paleobotany",
-
-  "option.departments.photographs": "Photographs",
-
-  "option.departments.prints-drawings": "Prints and Drawings",
 
   "RootPage.title": "Collection Browser",
 
