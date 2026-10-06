@@ -66,6 +66,17 @@ Default:
 mediaSnapshotSort: 'title:asc',
 ```
 
+### `mediaSource`
+Configures how images are found for a record in the detail view.
+
+- `'media'`: Search for published media records related to the record, using the `collectionspace_denorm:objectCsid` field that CollectionSpace denormalizes onto media records. Images are sorted using [`mediaSnapshotSort`](#mediaSnapshotSort).
+- `'record'`: Read the `collectionspace_denorm:mediaCsid` field of the record itself. This is required for profiles that do not denormalize `objectCsid` onto media records. The `materials` base configuration uses this setting. Images are shown in the order in which they were denormalized, and `mediaSnapshotSort` has no effect.
+
+Default:
+```
+mediaSource: 'media',
+```
+
 ### `departmentLabels`
 
 Optional.

@@ -1,3 +1,12 @@
+## v4.0.1
+
+- Fix detail page images not displaying in the materials profile. Add the `mediaSource`
+configuration setting, which controls whether images are found by searching for related media
+records (`'media'`, the default) or by reading the media csids denormalized onto the record
+(`'record'`, used by the materials base configuration).
+- Fix crash on material detail pages with institution holdings, caused by an undefined
+`group_reference` group in the institution holdings layout of the materials base configuration.
+
 ## v4.0.0
 
 Version 4.0.0 requires CollectionSpace 9.0 with ElasticSearch 7 support, and works with

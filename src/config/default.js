@@ -97,6 +97,18 @@ export default {
 
   mediaSnapshotSort: 'title:asc',
 
+  // Where to find the images for a record in the detail view.
+  //
+  // 'media': Search for published media records that are related to the record, using the
+  //   collectionspace_denorm:objectCsid field that is denormalized onto media records. Results
+  //   are sorted using mediaSnapshotSort.
+  //
+  // 'record': Read the media csids that have been denormalized onto the record itself, in the
+  //   collectionspace_denorm:mediaCsid field. This is required for profiles (e.g. materials) that
+  //   do not denormalize objectCsid onto media records. mediaSnapshotSort does not apply; images
+  //   are shown in the order they were denormalized.
+  mediaSource: 'media',
+
   searchResultImageDerivative: 'Small',
   detailImageDerivative: 'Medium',
 

@@ -63,6 +63,8 @@ export default {
 
   referenceField: 'materials_common:shortIdentifier',
 
+  mediaSource: 'record',
+
   storageKey: 'mo',
 
   searchResultImageDerivative: 'OriginalJpeg',
@@ -1194,7 +1196,6 @@ export default {
           'group_sample_briefDescriptions',
           'group_sample_measuredPartGroupList',
           'group_sample_system',
-          'group_reference',
         ],
       },
     },
