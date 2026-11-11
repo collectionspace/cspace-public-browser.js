@@ -39,17 +39,17 @@
 }
 
 .common p,
-.common h1,
-.common h2 {
+.common > header > h1,
+.common > header > h2 {
   margin: 0;
   padding: 0;
 }
 
-.common h1 {
+.common > header > h1 {
   font-size: 2rem;
 }
 
-.common h2 {
+.common > header > h2 {
   font-size: 1.5rem;
 }
 

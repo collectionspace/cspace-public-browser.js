@@ -16,6 +16,11 @@ const propTypes = {
     'collectionspace_core:refName': PropTypes.string,
     'collectionspace_denorm:title': PropTypes.string,
   }).isRequired,
+  headingLevel: PropTypes.number,
+};
+
+const defaultProps = {
+  headingLevel: 2,
 };
 
 const renderField = (id, fieldConfig, data) => {
@@ -62,7 +67,7 @@ const renderField = (id, fieldConfig, data) => {
   );
 };
 
-const renderGroup = (id, groupConfig, config, data) => {
+const renderGroup = (id, groupConfig, config, data, headingLevel) => {
   const {
     className,
     fields,
@@ -86,10 +91,11 @@ const renderGroup = (id, groupConfig, config, data) => {
   }
 
   const classes = classNames(groupStyles.common, groupStyles[className]);
+  const Heading = `h${headingLevel}`;
 
   return (
     <div className={classes} key={id}>
-      {title && <h3>{title}</h3>}
+      {title && <Heading>{title}</Heading>}
       <div>
         {renderedFields}
       </div>
@@ -101,6 +107,7 @@ export default function FieldList(props) {
   const {
     config,
     data,
+    headingLevel,
   } = props;
 
   const {
@@ -114,9 +121,16 @@ export default function FieldList(props) {
       key={layoutId}
       style={{ gridArea: layoutId }}
     >
-      {layout[layoutId].map((groupId) => renderGroup(groupId, groups[groupId], config, data))}
+      {layout[layoutId].map((groupId) => renderGroup(
+        groupId,
+        groups[groupId],
+        config,
+        data,
+        headingLevel,
+      ))}
     </div>
   ));
 }
 
 FieldList.propTypes = propTypes;
+FieldList.defaultProps = defaultProps;

@@ -1,3 +1,10 @@
+## v4.1.0
+
+- Set the `lang` attribute on the `html` element to the configured `locale`, if the host page
+has not set one.
+- Fix skipped heading levels on the detail page. Field group headings are now `h2` instead of
+`h3`.
+
 ## v4.0.1
 
 - Fix detail page images not displaying in the materials profile. Add the `mediaSource`

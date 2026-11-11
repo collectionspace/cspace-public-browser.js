@@ -38,6 +38,11 @@ const cspacePublicBrowser = (...customConfigs) => {
   const locale = config.get('locale');
   const messages = config.get('messages');
 
+  // set host's html element lang attribute if not already set
+  if (!document.documentElement.lang) {
+    document.documentElement.lang = locale;
+  }
+
   const intl = createIntl({
     locale,
     messages,
