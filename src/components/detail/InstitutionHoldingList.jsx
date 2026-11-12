@@ -48,7 +48,11 @@ const renderResult = (data) => {
 
   return (
     <li key={uri}>
-      <FieldList config={config.get('institutionHoldings').detailFields} data={data} />
+      <FieldList
+        config={config.get('institutionHoldings').detailFields}
+        data={data}
+        headingLevel={3}
+      />
     </li>
   );
 };
